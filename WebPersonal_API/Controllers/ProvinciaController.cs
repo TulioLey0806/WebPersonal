@@ -14,20 +14,20 @@ namespace WebPersonal_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriaCargoController : ControllerBase
+    public class ProvinciaController : ControllerBase
     {
-        private readonly ILogger<CategoriaCargoController> _logger;
-        private readonly ICategoriaCargoRepositorio _categoriacargoRepo;
+        private readonly ILogger<ProvinciaController> _logger;
+        private readonly IProvinciaRepositorio _provinciaRepo;
         // Implemenyado AutoMapper
         private readonly IMapper _mapper;
         // Implementado API Response
         protected APIResponse _response;
 
         // Implementando - Logger Inyeccion de Dependencia
-        public CategoriaCargoController(ILogger<CategoriaCargoController> logger, ICategoriaCargoRepositorio categoriacargoRepo, IMapper mapper)
+        public ProvinciaController(ILogger<ProvinciaController> logger, IProvinciaRepositorio provinciaRepo, IMapper mapper)
         {
             _logger = logger;
-            _categoriacargoRepo = categoriacargoRepo;
+            _provinciaRepo = provinciaRepo;
             _mapper = mapper;
             _response = new();
         }
@@ -35,16 +35,15 @@ namespace WebPersonal_API.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         // Devuelve todos los registros de la tabla
-        public async Task<ActionResult<APIResponse>> GetCategoriaCargos()
+        public async Task<ActionResult<APIResponse>> GetProvincias()
         {
             try
             {
-                _logger.LogInformation("GetCategoriaCargos: Obteniendo todas las Categorias de Cargos");
-
-                IEnumerable<CCatcar> tablaList = await _categoriacargoRepo.ObtenerTodos();
+                IEnumerable<CProvin> tablaList = await _provinciaRepo.ObtenerTodos();
 
                 // Implementando API Respose
-                _response.Resultado = _mapper.Map<IEnumerable<CCatcarDto>>(tablaList);
+                _logger.LogInformation("GetProvincias: Obteniendo todas las Provincias");
+                _response.Resultado = _mapper.Map<IEnumerable<CProvinDto>>(tablaList);
                 _response.StatusCode = HttpStatusCode.OK;
                 return Ok(_response);
             }
@@ -56,17 +55,17 @@ namespace WebPersonal_API.Controllers
             return _response;
         }
 
-        [HttpGet("codigo:string", Name = "GetCategoriaCargo")]
+        [HttpGet("codigo:string", Name = "GetProvincia")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         // Devuelve el registro de la tabla que se pase como parametro 
-        public async Task<ActionResult<APIResponse>> GetCategoriaCargo(string codigo)
+        public async Task<ActionResult<APIResponse>> GetProvincia(string codigo)
         {
             try
             {
-                var MenBadRequest = "En blanco o null la categoria de cargos";
-                var MenNotFound = "No existe la categoria de cargos con Id " + codigo;
+                var MenBadRequest = "En blanco o null el código de la provincia";
+                var MenNotFound = "No existe la provincia con Id " + codigo;
                 if (string.IsNullOrEmpty(codigo))
                 {
                     _logger.LogError(MenBadRequest);
@@ -76,7 +75,7 @@ namespace WebPersonal_API.Controllers
                     return BadRequest(_response);
                 }
 
-                var registro = await _categoriacargoRepo.Obtener(v => v.CodCatcar == codigo);
+                var registro = await _provinciaRepo.Obtener(v => v.CodProvin == codigo);
                 if (registro == null)
                 {
                     _logger.LogError(MenNotFound);
@@ -86,8 +85,8 @@ namespace WebPersonal_API.Controllers
                     return NotFound(_response);
                 }
 
-                _logger.LogInformation("GetCategoriaCargo: " + registro.CodCatcar + " - " + registro.NomCatcar);
-                _response.Resultado = _mapper.Map<CCatcarDto>(registro);
+                _logger.LogInformation("GetProvincia: " + registro.CodProvin + " - " + registro.NomProvin);
+                _response.Resultado = _mapper.Map<CProvinDto>(registro);
                 _response.StatusCode = HttpStatusCode.OK;
                 return Ok(_response);
             }
@@ -104,21 +103,21 @@ namespace WebPersonal_API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         // Crea un nuevo registro en la tabla
-        public async Task<ActionResult<APIResponse>> CrearCategoriaCargo([FromBody] CCatcarCreateDto createDto)
+        public async Task<ActionResult<APIResponse>> CrearProvincia([FromBody] CProvinCreateDto createDto)
         {
             try
             {
-                var MenBadRequest = "La categoria con el nombre: [" + createDto.NomCatcar + "] ya existe en la tabla!";
+                var MenBadRequest = "La provincia con el nombre: [" + createDto.NomProvin + "] ya existe en la tabla!";
                 // Implementando Validaciones ModelState
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
                 // Implementando Validaciones Personalizadas
-                if (await _categoriacargoRepo.Obtener(v => v.NomCatcar!.ToLower() == createDto.NomCatcar!.ToLower()) != null)
+                if (await _provinciaRepo.Obtener(v => v.NomProvin!.ToLower() == createDto.NomProvin!.ToLower()) != null)
                 {
                     //ModelState.AddModelError("NombreExiste", "La categoría con ese Nombre ya existe!");
-                    _logger.LogError("CrearCategoriaCargo: " + MenBadRequest);
+                    _logger.LogError("CrearProvincia: " + MenBadRequest);
                     _response.IsExitoso = false;
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     _response.ErrorMessages = new List<string>() { MenBadRequest };
@@ -131,17 +130,17 @@ namespace WebPersonal_API.Controllers
                 }
 
                 // Obteniendo un nuevo código de categoria de cargos
-                createDto.CodCatcar = _categoriacargoRepo.GetCodigoCategoriaCargos();
+                createDto.CodProvin = _provinciaRepo.GetCodigoProvincia();
                 // Funcionando AutoMapper
-                CCatcar modelo = _mapper.Map<CCatcar>(createDto);
+                CProvin modelo = _mapper.Map<CProvin>(createDto);
 
                 // Insertando los datos en la tabla
-                await _categoriacargoRepo.Crear(modelo);
+                await _provinciaRepo.Crear(modelo);
                 _response.Resultado = modelo;
                 _response.StatusCode = HttpStatusCode.Created;
 
-                _logger.LogInformation("CrearCategoriaCargo: Nueva Categoria de cargo: " + modelo.CodCatcar + " - " + modelo.NomCatcar);
-                return CreatedAtRoute("GetCategoriaCargo", new { CodCatcar = modelo.CodCatcar }, _response);
+                _logger.LogInformation("CrearProvincia: Nueva Provincia: " + modelo.CodProvin + " - " + modelo.NomProvin);
+                return CreatedAtRoute("GetProvincia", new { CodProvin = modelo.CodProvin }, _response);
             }
             catch (Exception ex)
             {
@@ -155,12 +154,12 @@ namespace WebPersonal_API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteCategoriaCargo(string codigo) 
+        public async Task<IActionResult> DeleteProvincia(string codigo) 
         {
             try
             {
-                var MenBadRequest = "En blanco o null la categoria de cargos";
-                var MenNotFound = "No existe la categoria de cargos con Id " + codigo;
+                var MenBadRequest = "En blanco o null el código de provincia";
+                var MenNotFound = "No existe la provincia con Id " + codigo;
                 if (string.IsNullOrWhiteSpace(codigo))
                 {
                     _response.IsExitoso = false;
@@ -169,7 +168,7 @@ namespace WebPersonal_API.Controllers
                     return BadRequest(_response);
                 }
 
-                var registro = await _categoriacargoRepo.Obtener(v => v.CodCatcar == codigo);
+                var registro = await _provinciaRepo.Obtener(v => v.CodProvin == codigo);
                 if (registro == null)
                 {
                     _response.IsExitoso = false;
@@ -178,10 +177,10 @@ namespace WebPersonal_API.Controllers
                     return NotFound(_response);
                 }
 
-                // Eliminando la categoria de cargo
-                await _categoriacargoRepo.Remover(registro);
+                // Eliminando el registro
+                await _provinciaRepo.Remover(registro);
 
-                _logger.LogInformation("DeleteCategoriaCargo: " + registro.CodCatcar + " - " + registro.NomCatcar);
+                _logger.LogInformation("DeleteProvincia: " + registro.CodProvin + " - " + registro.NomProvin);
                 _response.StatusCode = HttpStatusCode.NoContent;
                 return Ok(_response);
             }
@@ -197,10 +196,10 @@ namespace WebPersonal_API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza todos los registro de la tabla
-        public async Task<IActionResult> UpdateCategoriaCargo(string codigo, [FromBody] CCatcarUpdateDto updateDto)
+        public async Task<IActionResult> UpdateProvincia(string codigo, [FromBody] CProvinUpdateDto updateDto)
         {
-            var MenBadRequest = "En blanco o null la categoria de cargos";
-            if (updateDto == null || codigo != updateDto.CodCatcar)
+            var MenBadRequest = "En blanco o null el código de provincia";
+            if (updateDto == null || codigo != updateDto.CodProvin)
             {
                 _logger.LogError(MenBadRequest);
                 _response.IsExitoso = false;
@@ -209,11 +208,11 @@ namespace WebPersonal_API.Controllers
                 return BadRequest(_response);
             }
 
-            CCatcar modelo = _mapper.Map<CCatcar>(updateDto);
+            CProvin modelo = _mapper.Map<CProvin>(updateDto);
 
             // Actualizando los datos en la tabla
-            await _categoriacargoRepo.Actualizar(modelo);
-            _logger.LogInformation("UpdateCategoriaCargo: " + updateDto.CodCatcar + " - " + updateDto.NomCatcar);
+            await _provinciaRepo.Actualizar(modelo);
+            _logger.LogInformation("UpdateProvincia: " + updateDto.CodProvin + " - " + updateDto.NomProvin);
             _response.StatusCode = HttpStatusCode.NoContent;
             return Ok(_response);
         }
@@ -222,11 +221,11 @@ namespace WebPersonal_API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza solo un campo de la tabla
-        public async Task<IActionResult> UpdatePartialCategoriaCargo(string codigo, JsonPatchDocument<CCatcarUpdateDto> updateDto)
+        public async Task<IActionResult> UpdatePartialProvincia(string codigo, JsonPatchDocument<CProvinUpdateDto> patchDto)
         {
-            var MenBadRequest = "En blanco o null la categoria de cargos";
-            var MenNotFound = "No existe la categoria de cargos con Id " + codigo;
-            if (updateDto == null || string.IsNullOrEmpty(codigo))
+            var MenBadRequest = "En blanco o null el código de provincia";
+            var MenNotFound = "No existe la provincia con Id " + codigo;
+            if (patchDto == null || string.IsNullOrEmpty(codigo))
             {
                 _logger.LogError(MenBadRequest);
                 _response.IsExitoso = false;
@@ -236,7 +235,7 @@ namespace WebPersonal_API.Controllers
             }
 
             // Implementando AsNoTracking
-            var registro = await _categoriacargoRepo.Obtener(v => v.CodCatcar == codigo, tracked:false);
+            var registro = await _provinciaRepo.Obtener(v => v.CodProvin == codigo, tracked:false);
             if (registro == null)
             {
                 _response.IsExitoso = false;
@@ -245,21 +244,21 @@ namespace WebPersonal_API.Controllers
                 return NotFound(_response);
             }
 
-            CCatcarUpdateDto ccatcarDto = _mapper.Map<CCatcarUpdateDto>(registro);
+            CProvinUpdateDto cprovinDto = _mapper.Map<CProvinUpdateDto>(registro);
 
-            updateDto.ApplyTo(ccatcarDto, ModelState);
+            patchDto.ApplyTo(cprovinDto, ModelState);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState); 
             }
 
-            CCatcar modelo = _mapper.Map<CCatcar>(ccatcarDto);
+            CProvin modelo = _mapper.Map<CProvin>(cprovinDto);
 
             // Actualizando los datos en la tabla
-            await _categoriacargoRepo.Actualizar(modelo);
+            await _provinciaRepo.Actualizar(modelo);
 
-            _logger.LogInformation("UpdatePartialCategoriaCargo: " + ccatcarDto.CodCatcar + " - " + ccatcarDto.NomCatcar);
+            _logger.LogInformation("UpdatePartialProvincia: " + cprovinDto.CodProvin + " - " + cprovinDto.NomProvin);
             _response.StatusCode = HttpStatusCode.NoContent;
             return Ok(_response);
         }

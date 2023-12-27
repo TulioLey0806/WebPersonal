@@ -8,10 +8,10 @@ namespace WebPersonal_API.Repositorio
     // Implementando Repositorio Generico
     public class Repositorio<T> : IRepositorio<T> where T : class
     {
-        private readonly ApplicationDbContext _db;
+        private readonly PersonalDbContext _db;
         internal DbSet<T> dbSet;
         
-        public Repositorio(ApplicationDbContext db)
+        public Repositorio(PersonalDbContext db)
         {
             _db = db;
             this.dbSet = _db.Set<T>();

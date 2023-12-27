@@ -4,10 +4,10 @@ namespace WebPersonal_API.Datos
 {
     public static class C_catcarStore
     {
-        public static List<C_catcarDto> c_catcarList =
+        public static List<CCatcarDto> ccatcarList =
         [
-              new() {Cod_catcar="00", Nom_catcar="Sin Clasificador"},
-              new() {Cod_catcar="01", Nom_catcar="Funcionario"}
+              new() { CodCatcar = "00", NomCatcar = "Sin Clasificador"},
+              new() { CodCatcar = "01", NomCatcar = "Funcionario"}
         ];
 
     }

@@ -2,13 +2,13 @@
 
 namespace WebPersonal_API.Repositorio.IRepositorio
 {
-    public interface ICategoriaCargoRepositorio : IRepositorio<C_catcar>
+    public interface ICategoriaCargoRepositorio : IRepositorio<CCatcar>
     {
         /// <summary>
         /// Actualiza los campos de la tabla C:catcar (Categoría de Cargos)
         /// </summary>
         /// <returns></returns>       
-        Task<C_catcar> Actualizar(C_catcar entidad);
+        Task<CCatcar> Actualizar(CCatcar entidad);
 
         /// <summary>
         /// Devuelve un nuevo código para el clasificador de Categoría de Cargos

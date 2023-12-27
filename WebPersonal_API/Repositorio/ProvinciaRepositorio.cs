@@ -6,25 +6,20 @@ using WebPersonal_API.Repositorio.IRepositorio;
 
 namespace WebPersonal_API.Repositorio
 {
-    public class CategoriaCargoRepositorio : Repositorio<CCatcar>, ICategoriaCargoRepositorio
+    public class ProvinciaRepositorio(PersonalDbContext db) : Repositorio<CProvin>(db), IProvinciaRepositorio
     {
-        private readonly PersonalDbContext _db;
+        private readonly PersonalDbContext _db = db;
 
-        public CategoriaCargoRepositorio(PersonalDbContext db) :base(db)
+        public async Task<CProvin> Actualizar(CProvin entidad)
         {
-            _db = db;
-        }
- 
-        public async Task<CCatcar> Actualizar(CCatcar entidad)
-        {
-            _db.CCatcars.Update(entidad);
+            _db.CProvins.Update(entidad);
             await _db.SaveChangesAsync();
             return entidad;
         }
 
-        public string GetCodigoCategoriaCargos()
+        public string GetCodigoProvincia()
         {
-            var consecutivo = _db.CCatcars.OrderByDescending(v => v.CodCatcar).FirstOrDefault().CodCatcar;
+            var consecutivo = _db.CProvins.OrderByDescending(v => v.CodProvin).FirstOrDefault().CodProvin;
             if (consecutivo == null)
                 return "01";
 

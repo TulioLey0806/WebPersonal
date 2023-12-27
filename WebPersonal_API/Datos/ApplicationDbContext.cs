@@ -11,7 +11,7 @@ namespace WebPersonal_API.Datos
         
         }
 
-        public DbSet<C_catcar> C_catcar {  get; set; }
+//        public DbSet<C_catcar> C_catcar {  get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
