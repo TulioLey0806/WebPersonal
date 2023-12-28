@@ -20,7 +20,7 @@ namespace WebPersonal_API
             CreateMap<CMunici, CMuniciCreateDto>().ReverseMap();
             CreateMap<CMunici, CMuniciUpdateDto>().ReverseMap();    
 
-            CreateMap<CBarrio, CBarrioDto>().ReverseMap();
+            //CreateMap<CBarrio, CBarrioDto>().ReverseMap();
 
         }
     }

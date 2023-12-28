@@ -1,7 +1,11 @@
+using WebPersonal_MVC;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Adicionando el servicio de AutoMapper
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 var app = builder.Build();
 
