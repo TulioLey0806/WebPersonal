@@ -6,6 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebPersonal_API", "WebPersonal_API\WebPersonal_API.csproj", "{C9D8C8D9-5A4C-4946-80A5-E6E08FF78D64}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPersonal_MVC", "WebPersonal_MVC\WebPersonal_MVC.csproj", "{3168FB59-BB8F-4BC4-93A8-166DDB431107}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4ECCDAFA-889A-41EA-B2ED-D5DCF2AC26FA} = {4ECCDAFA-889A-41EA-B2ED-D5DCF2AC26FA}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPersonal_Utilidad", "WebPersonal_Utilidad\WebPersonal_Utilidad.csproj", "{4ECCDAFA-889A-41EA-B2ED-D5DCF2AC26FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,10 @@ Global
 		{3168FB59-BB8F-4BC4-93A8-166DDB431107}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3168FB59-BB8F-4BC4-93A8-166DDB431107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3168FB59-BB8F-4BC4-93A8-166DDB431107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECCDAFA-889A-41EA-B2ED-D5DCF2AC26FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECCDAFA-889A-41EA-B2ED-D5DCF2AC26FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECCDAFA-889A-41EA-B2ED-D5DCF2AC26FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECCDAFA-889A-41EA-B2ED-D5DCF2AC26FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
