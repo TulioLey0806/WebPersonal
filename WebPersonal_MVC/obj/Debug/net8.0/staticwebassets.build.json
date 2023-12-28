@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "3z1NUcLrNU/UeMYE1SKB8pAsjpEWMFSrsB7VgfU85pA=",
+  "Hash": "OJs49dGbx813rZ1BQATESGUnRe0RsLFt9EMl3ZJXLDI=",
   "Source": "WebPersonal_MVC",
   "BasePath": "_content/WebPersonal_MVC",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "E:\\WebApp\\WebPersonal\\WebPersonal_API\\WebPersonal_API.csproj",
+      "Version": 2,
+      "Source": "WebPersonal_API",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [
     {
       "Name": "WebPersonal_MVC\\wwwroot",

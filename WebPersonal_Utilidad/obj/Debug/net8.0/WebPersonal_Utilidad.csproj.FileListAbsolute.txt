@@ -1,0 +1,12 @@
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\bin\Debug\net8.0\WebPersonal_Utilidad.deps.json
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\bin\Debug\net8.0\WebPersonal_Utilidad.dll
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\bin\Debug\net8.0\WebPersonal_Utilidad.pdb
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\obj\Debug\net8.0\WebPersonal_Utilidad.GeneratedMSBuildEditorConfig.editorconfig
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\obj\Debug\net8.0\WebPersonal_Utilidad.AssemblyInfoInputs.cache
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\obj\Debug\net8.0\WebPersonal_Utilidad.AssemblyInfo.cs
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\obj\Debug\net8.0\WebPersonal_Utilidad.csproj.CoreCompileInputs.cache
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\obj\Debug\net8.0\WebPersonal_Utilidad.sourcelink.json
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\obj\Debug\net8.0\WebPersonal_Utilidad.dll
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\obj\Debug\net8.0\refint\WebPersonal_Utilidad.dll
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\obj\Debug\net8.0\WebPersonal_Utilidad.pdb
+E:\WebApp\WebPersonal\WebPersonal_Utilidad\obj\Debug\net8.0\ref\WebPersonal_Utilidad.dll
