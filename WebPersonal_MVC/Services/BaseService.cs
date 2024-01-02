@@ -9,12 +9,11 @@ namespace WebPersonal_MVC.Services
     public class BaseService : IBaseService
     {
         public APIResponse responseModel { get ; set ; }
-
         public IHttpClientFactory _httpClient { get; set; }
 
         public BaseService(IHttpClientFactory httpClient)
         {
-            this.responseModel = new APIResponse();
+            this.responseModel = new();
             _httpClient = httpClient;
         }
 

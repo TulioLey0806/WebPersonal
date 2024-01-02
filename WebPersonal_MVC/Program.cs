@@ -1,4 +1,6 @@
 using WebPersonal_MVC;
+using WebPersonal_MVC.Services;
+using WebPersonal_MVC.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // Adicionando el servicio de AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingConfig));
+
+// Adicionando las Interfaces
+builder.Services.AddHttpClient<ICategoriaCargoService, CategoriaCargoService>();
+builder.Services.AddScoped<ICategoriaCargoService, CategoriaCargoService>();
+builder.Services.AddHttpClient<IMunicipioService, MunicipioService>();
+builder.Services.AddScoped<IMunicipioService, MunicipioService>();
+builder.Services.AddHttpClient<IProvinciaService, ProvinciaService>();
+builder.Services.AddScoped<IProvinciaService, ProvinciaService>();
 
 var app = builder.Build();
 

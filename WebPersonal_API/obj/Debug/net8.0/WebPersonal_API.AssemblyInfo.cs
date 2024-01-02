@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebPersonal_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d05640c7f2c722876444d49c8740d40cdb9aab1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+938ee9c5935a5ee4ad61b36357be6089912345fc")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebPersonal_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebPersonal_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
