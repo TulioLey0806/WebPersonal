@@ -1,11 +1,19 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebPersonal_MVC
 build_property.RootNamespace = WebPersonal_MVC
@@ -18,12 +26,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\WebApp\WebPersonal\WebPersonal_MVC
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/WebApp/WebPersonal/WebPersonal_MVC/Views/CategoriaCargo/IndexCategoriaCargo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhQ2FyZ29cSW5kZXhDYXRlZ29yaWFDYXJnby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/WebApp/WebPersonal/WebPersonal_MVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/WebApp/WebPersonal/WebPersonal_MVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebApp/WebPersonal/WebPersonal_MVC/Views/Municipio/IndexMunicipio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVuaWNpcGlvXEluZGV4TXVuaWNpcGlvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebApp/WebPersonal/WebPersonal_MVC/Views/Provincia/IndexProvincia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmluY2lhXEluZGV4UHJvdmluY2lhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/WebApp/WebPersonal/WebPersonal_MVC/Views/Shared/Error.cshtml]

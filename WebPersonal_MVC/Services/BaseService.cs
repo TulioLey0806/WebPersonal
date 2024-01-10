@@ -29,7 +29,7 @@ namespace WebPersonal_MVC.Services
                 if (apiRequest.Datos != null)
                 {
                     message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Datos),
-                        Encoding.UTF8, "aplication/json");
+                        Encoding.UTF8, "application/json");
                 }
 
                 switch (apiRequest.APITipo)
@@ -65,11 +65,6 @@ namespace WebPersonal_MVC.Services
                 var APIResponse = JsonConvert.DeserializeObject<T>(res);
                 return APIResponse;
             }
-
-
-
-        
         }
-
     }
 }
