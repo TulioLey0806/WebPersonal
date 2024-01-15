@@ -79,5 +79,29 @@ namespace WebPersonal_MVC.Controllers
             return View(modelo);
         }
 
+        public async Task<IActionResult> RemoverProvincia(string codProvin)
+        {
+            var response = await _provinciaService.Obtener<APIResponse>(codProvin);
+            if (response != null && response.IsExitoso)
+            {
+                CProvinDto model = JsonConvert.DeserializeObject<CProvinDto>(Convert.ToString(response.Resultado));
+                return View(model);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoverProvincia(CProvinDto modelo)
+        {
+            var response = await _provinciaService.Remover<APIResponse>(modelo.CodProvin);
+            if (response != null && response.IsExitoso)
+            {
+               return RedirectToAction(nameof(IndexProvincia));
+            }
+            return View(modelo);
+        }
+
+
     }
 }

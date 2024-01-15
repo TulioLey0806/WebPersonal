@@ -1,12 +1,13 @@
-﻿@model WebPersonal_MVC.Models.Dto.CProvinUpdateDto
+﻿@model WebPersonal_MVC.Models.Dto.CProvinDto
 @{
-    ViewData["Title"] = "Actualizar Provincia";
+    ViewData["Title"] = "Eliminar Provincia";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form method="post" asp-action="ActualizarProvincia">
+<form method="post" asp-action="RemoverProvincia">
     <div class="container border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input hidden asp-for="CodProvin" />
 
         <div class="row">
             <h2 class="text-info">@ViewData["Title"]</h2>
@@ -15,21 +16,19 @@
         <div class="row mt-2">
             <div class="col-md-6">
                 <label asp-for="CodProvin" class="form-label"></label>
-                <input asp-for="CodProvin" class="form-control" readonly />
-                <span asp-validation-for="CodProvin" class="text-danger"></span>
+                <input asp-for="CodProvin" class="form-control" disabled />
             </div>
         </div>
 
         <div class="row mt-2">
             <div class="col-md-6">
                 <label asp-for="NomProvin" class="form-label"></label>
-                <input asp-for="NomProvin" class="form-control" />
-                <span asp-validation-for="NomProvin" class="text-danger"></span>
+                <input asp-for="NomProvin" class="form-control" disabled />
             </div>
         </div>
 
         <div class="d-grid gap-2 d-md-block mt-2">
-            <button type="submit" class="btn btn-warning">Actualizar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
             <a asp-controller="Provincia" asp-action="IndexProvincia" class="btn btn-success">Regresar</a>
         </div>
 
@@ -40,6 +39,8 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+
 
 
 
