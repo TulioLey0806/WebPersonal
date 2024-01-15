@@ -53,5 +53,31 @@ namespace WebPersonal_MVC.Controllers
         }
 
 
+        public async Task<IActionResult> ActualizarProvincia(string codProvin)
+        {
+            var response = await _provinciaService.Obtener<APIResponse>(codProvin);
+            if(response != null && response.IsExitoso)
+            {
+                CProvinDto model = JsonConvert.DeserializeObject<CProvinDto>(Convert.ToString(response.Resultado));
+                return View(_mapper.Map<CProvinUpdateDto>(model));
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ActualizarProvincia(CProvinUpdateDto modelo)
+        {
+            if(ModelState.IsValid)
+            {
+                var response = await _provinciaService.Actualizar<APIResponse>(modelo);
+                if(response != null && response.IsExitoso)
+                {
+                    return RedirectToAction(nameof(IndexProvincia));
+                }
+            }
+            return View(modelo);
+        }
+
     }
 }
