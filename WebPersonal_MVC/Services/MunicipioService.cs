@@ -8,12 +8,12 @@ namespace WebPersonal_MVC.Services
     public class MunicipioService :BaseService, IMunicipioService
     {
         public readonly IHttpClientFactory _httpClient;
-        private string _apiUrl;
+        private string _municipioUrl;
 
         public MunicipioService(IHttpClientFactory httpClient, IConfiguration configuration) :base(httpClient)
         {
             _httpClient = httpClient;
-            _apiUrl = configuration.GetValue<string>("ServiceUrls:API_URL");
+            _municipioUrl = configuration.GetValue<string>("ServiceUrls:API_URL");
         }
 
         public Task<T> Actualizar<T>(CMuniciUpdateDto dto)
@@ -22,7 +22,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.PUT,
                 Datos = dto,
-                Url = _apiUrl + "/api/Municipio/" + dto.CodProvin + ", " + dto.CodMunici
+                Url = _municipioUrl + "/api/Municipio/" + dto.CodProvin + ", " + dto.CodMunici
             });
         }
 
@@ -32,7 +32,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = _apiUrl + "/api/Municipio"
+                Url = _municipioUrl + "/api/Municipio/"
             });
         }
 
@@ -41,7 +41,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _apiUrl + "/api/Municipio/" + codProvin +", "+ codMunici
+                Url = _municipioUrl + "/api/Municipio/" + codProvin +", "+ codMunici
             });
         }
 
@@ -50,7 +50,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _apiUrl + "/api/Municipio"
+                Url = _municipioUrl + "/api/Municipio/"
             });
         }
 
@@ -59,7 +59,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.DELETE,
-                Url = _apiUrl + "/api/Municipio/" + codProvin + ", " + codMunici
+                Url = _municipioUrl + "/api/Municipio/" + codProvin + ", " + codMunici
             });
         }
     }

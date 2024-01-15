@@ -33,7 +33,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = _apiUrl + "/api/CategoriaCargo" 
+                Url = _apiUrl + "/api/CategoriaCargo/" 
             });
         }
 
@@ -51,7 +51,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _apiUrl + "/api/CategoriaCargo"
+                Url = _apiUrl + "/api/CategoriaCargo/"
             });
         }
 
