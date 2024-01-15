@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVuaWNpcGlvXEluZGV4TXVuaWNpcGlvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/WebApp/WebPersonal/WebPersonal_MVC/Views/Provincia/CreateProvincia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmluY2lhXENyZWF0ZVByb3ZpbmNpYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/WebApp/WebPersonal/WebPersonal_MVC/Views/Provincia/IndexProvincia.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmluY2lhXEluZGV4UHJvdmluY2lhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

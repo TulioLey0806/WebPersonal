@@ -1,0 +1,45 @@
+﻿@model WebPersonal_MVC.Models.Dto.CProvinCreateDto
+@{
+    ViewData["Title"] = "Crear Nueva Provincia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="CreateProvincia">
+    <div class="container border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row">
+            <h2 class="text-info">@ViewData["Title"]</h2>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <label asp-for="CodProvin" class="form-label"></label>
+                <input asp-for="CodProvin" class="form-control" readonly />
+                <span asp-validation-for="CodProvin" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <label asp-for="NomProvin" class="form-label"></label>
+                <input asp-for="NomProvin" class="form-control" />
+                <span asp-validation-for="NomProvin" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-block mt-2">
+            <button type="submit" class="btn btn-primary">Grabar</button>
+            <a asp-controller="Provincia" asp-action="IndexProvincia" class="btn btn-success">Regresar</a>
+        </div>
+
+    </div>
+
+</form> 
+
+ @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} 
+
+
+

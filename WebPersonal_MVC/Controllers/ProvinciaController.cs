@@ -30,5 +30,28 @@ namespace WebPersonal_MVC.Controllers
 
             return View(lista);
         }
+
+        // Get
+        public async Task<IActionResult> CreateProvincia() 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateProvincia(CProvinCreateDto modelo) 
+        {
+           if(ModelState.IsValid) 
+           {
+                var reponse = await _provinciaService.Crear<APIResponse>(modelo);
+                if (reponse != null && reponse.IsExitoso) 
+                {
+                    return RedirectToAction(nameof(IndexProvincia));
+                }
+           }
+            return View(modelo);             
+        }
+
+
     }
 }
