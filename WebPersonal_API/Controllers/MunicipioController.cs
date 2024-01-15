@@ -60,7 +60,7 @@ namespace WebPersonal_API.Controllers
             return _response;
         }
 
-        [HttpGet("codProvin:string, codMunici:string", Name = "GetMunicipio")]
+        [HttpGet("{codProvin},{codMunici}", Name = "GetMunicipio")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -164,7 +164,7 @@ namespace WebPersonal_API.Controllers
             return _response;
         }
 
-        [HttpDelete("codProvin:string, codMunici:string")]
+        [HttpDelete("{codProvin},{codMunici}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -206,7 +206,7 @@ namespace WebPersonal_API.Controllers
             return BadRequest(_response);
         }
 
-        [HttpPut("codProvin:string, codMunici:string")]
+        [HttpPut("{codProvin},{codMunici}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza todos los registro de la tabla
@@ -251,7 +251,7 @@ namespace WebPersonal_API.Controllers
             return Ok(_response);
         }
 
-        [HttpPatch("codProvin:string, codMunici:string")]
+        [HttpPatch("{codProvin},{codMunici}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza solo un campo de la tabla

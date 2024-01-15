@@ -56,7 +56,7 @@ namespace WebPersonal_API.Controllers
             return _response;
         }
 
-        [HttpGet("codigo:string", Name = "GetCategoriaCargo")]
+        [HttpGet("{codigo}", Name = "GetCategoriaCargo")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -151,7 +151,7 @@ namespace WebPersonal_API.Controllers
             return _response;
         }
 
-        [HttpDelete("codigo:string")]
+        [HttpDelete("{codigo}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -193,7 +193,7 @@ namespace WebPersonal_API.Controllers
             return BadRequest(_response);
         }  
 
-        [HttpPut("codigo:string")]
+        [HttpPut("{codigo}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza todos los registro de la tabla
@@ -218,7 +218,7 @@ namespace WebPersonal_API.Controllers
             return Ok(_response);
         }
 
-        [HttpPatch("codigo:string")]
+        [HttpPatch("{codigo}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza solo un campo de la tabla

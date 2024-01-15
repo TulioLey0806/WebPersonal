@@ -28,8 +28,8 @@
                     <td>@item.CodProvin</td>
                     <td>@item.NomProvin</td>
                     <td>
-                        <a asp-controller="Provincia" asp-action="ActualizarProvincia" class="btn btn-success"><i class="bi bi-pencil-square"></i> </a>
-                        <a asp-controller="Provincia" asp-action="RemoverProvincia" class="btn btn-danger"><i class="bi bi-trash-fill"></i> </a>
+                        <a asp-controller="Provincia" asp-action="ActualizarProvincia" asp-route-codProvin="@item.CodProvin" class="btn btn-success"><i class="bi bi-pencil-square"></i> </a>
+                        <a asp-controller="Provincia" asp-action="RemoverProvincia" asp-route-codProvin="@item.CodProvin" class="btn btn-danger"><i class="bi bi-trash-fill"></i> </a>
                     </td>
                 </tr>
             }

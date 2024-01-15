@@ -9,12 +9,12 @@ namespace WebPersonal_MVC.Services
     public class ProvinciaService : BaseService, IProvinciaService
     {
         public readonly IHttpClientFactory _httpClient;
-        private string _apiUrl;
+        private string _provinciaUrl;
 
         public ProvinciaService(IHttpClientFactory httpClient, IConfiguration configuration) : base(httpClient)
         {
             _httpClient = httpClient;
-            _apiUrl = configuration.GetValue<string>("ServiceUrls:API_URL");
+            _provinciaUrl = configuration.GetValue<string>("ServiceUrls:API_URL");
         }
 
         public Task<T> Actualizar<T>(CProvinUpdateDto dto)
@@ -23,7 +23,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.PUT,
                 Datos = dto,
-                Url = _apiUrl + "/api/Provincia/" + dto.CodProvin
+                Url = _provinciaUrl + "/api/Provincia/" + dto.CodProvin
             });
         }
 
@@ -33,7 +33,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = _apiUrl + "/api/Provincia"
+                Url = _provinciaUrl + "/api/Provincia/"
             });
         }
 
@@ -42,7 +42,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _apiUrl + "/api/Provincia/" + codigo
+                Url = _provinciaUrl + "/api/Provincia/" + codigo
             });
         }
 
@@ -51,7 +51,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _apiUrl + "/api/Provincia"
+                Url = _provinciaUrl + "/api/Provincia/"
             });
         }
 
@@ -60,7 +60,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.DELETE,
-                Url = _apiUrl + "/api/Provincia/" + codigo
+                Url = _provinciaUrl + "/api/Provincia/" + codigo
             });
         }
     }

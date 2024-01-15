@@ -55,18 +55,18 @@ namespace WebPersonal_API.Controllers
             return _response;
         }
 
-        [HttpGet("codigo:string", Name = "GetProvincia")]
+        [HttpGet("{codProvin}", Name = "GetProvincia")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         // Devuelve el registro de la tabla que se pase como parametro 
-        public async Task<ActionResult<APIResponse>> GetProvincia(string codigo)
+        public async Task<ActionResult<APIResponse>> GetProvincia(string codProvin)
         {
             try
             {
                 var MenBadRequest = "En blanco o null el código de la provincia";
-                var MenNotFound = "No existe la provincia con Id " + codigo;
-                if (string.IsNullOrEmpty(codigo))
+                var MenNotFound = "No existe la provincia con Id " + codProvin;
+                if (string.IsNullOrEmpty(codProvin))
                 {
                     _logger.LogError(MenBadRequest);
                     _response.IsExitoso = false;
@@ -75,7 +75,7 @@ namespace WebPersonal_API.Controllers
                     return BadRequest(_response);
                 }
 
-                var registro = await _provinciaRepo.Obtener(v => v.CodProvin == codigo);
+                var registro = await _provinciaRepo.Obtener(v => v.CodProvin == codProvin);
                 if (registro == null)
                 {
                     _logger.LogError(MenNotFound);
@@ -97,7 +97,7 @@ namespace WebPersonal_API.Controllers
             }
             return _response;
         }
-
+        
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -150,17 +150,17 @@ namespace WebPersonal_API.Controllers
             return _response;
         }
 
-        [HttpDelete("codigo:string")]
+        [HttpDelete("{codProvin}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteProvincia(string codigo) 
+        public async Task<IActionResult> DeleteProvincia(string codProvin)
         {
             try
             {
                 var MenBadRequest = "En blanco o null el código de provincia";
-                var MenNotFound = "No existe la provincia con Id " + codigo;
-                if (string.IsNullOrWhiteSpace(codigo))
+                var MenNotFound = "No existe la provincia con Id " + codProvin;
+                if (string.IsNullOrWhiteSpace(codProvin))
                 {
                     _response.IsExitoso = false;
                     _response.StatusCode = HttpStatusCode.BadRequest;
@@ -168,7 +168,7 @@ namespace WebPersonal_API.Controllers
                     return BadRequest(_response);
                 }
 
-                var registro = await _provinciaRepo.Obtener(v => v.CodProvin == codigo);
+                var registro = await _provinciaRepo.Obtener(v => v.CodProvin == codProvin);
                 if (registro == null)
                 {
                     _response.IsExitoso = false;
@@ -190,16 +190,16 @@ namespace WebPersonal_API.Controllers
                 _response.ErrorMessages = new List<string>() { ex.ToString() };
             }
             return BadRequest(_response);
-        }  
+        }
 
-        [HttpPut("codigo:string")]
+        [HttpPut("{codProvin}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza todos los registro de la tabla
-        public async Task<IActionResult> UpdateProvincia(string codigo, [FromBody] CProvinUpdateDto updateDto)
+        public async Task<IActionResult> UpdateProvincia(string codProvin, [FromBody] CProvinUpdateDto updateDto)
         {
             var MenBadRequest = "En blanco o null el código de provincia";
-            if (updateDto == null || codigo != updateDto.CodProvin)
+            if (updateDto == null || codProvin != updateDto.CodProvin)
             {
                 _logger.LogError(MenBadRequest);
                 _response.IsExitoso = false;
@@ -217,15 +217,15 @@ namespace WebPersonal_API.Controllers
             return Ok(_response);
         }
 
-        [HttpPatch("codigo:string")]
+        [HttpPatch("{codProvin}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza solo un campo de la tabla
-        public async Task<IActionResult> UpdatePartialProvincia(string codigo, JsonPatchDocument<CProvinUpdateDto> patchDto)
+        public async Task<IActionResult> UpdatePartialProvincia(string codProvin, JsonPatchDocument<CProvinUpdateDto> patchDto)
         {
             var MenBadRequest = "En blanco o null el código de provincia";
-            var MenNotFound = "No existe la provincia con Id " + codigo;
-            if (patchDto == null || string.IsNullOrEmpty(codigo))
+            var MenNotFound = "No existe la provincia con Id " + codProvin;
+            if (patchDto == null || string.IsNullOrEmpty(codProvin))
             {
                 _logger.LogError(MenBadRequest);
                 _response.IsExitoso = false;
@@ -235,7 +235,7 @@ namespace WebPersonal_API.Controllers
             }
 
             // Implementando AsNoTracking
-            var registro = await _provinciaRepo.Obtener(v => v.CodProvin == codigo, tracked:false);
+            var registro = await _provinciaRepo.Obtener(v => v.CodProvin == codProvin, tracked:false);
             if (registro == null)
             {
                 _response.IsExitoso = false;
