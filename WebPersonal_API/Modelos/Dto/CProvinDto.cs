@@ -6,6 +6,11 @@ namespace WebPersonal_API.Modelos.Dto
 {
     public class CProvinDto
     {
+        //public CProvinDto()
+        //{
+        //    CMunicis = new HashSet<CMuniciDto>();
+        //}
+
         [Display(Name = "Código Provincia")]
         [Unicode(false)]
         public string CodProvin { get; set; }
@@ -19,7 +24,8 @@ namespace WebPersonal_API.Modelos.Dto
         //[InverseProperty("CodProvinNavigation")]
         //public virtual ICollection<CBarrio> CBarrios { get; set; } = new List<CBarrio>();
 
-        //[InverseProperty("CodProvinNavigation")]
-        //public virtual ICollection<CMunici> CMunicis { get; set; } = new List<CMunici>();
+        [InverseProperty("CodProvinNavigation")]
+        //= new List<CMuniciDto>()
+        public ICollection<CMuniciDto> CMunicis { get; set; } 
     }
 }

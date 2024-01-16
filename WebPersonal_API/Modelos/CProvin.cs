@@ -9,6 +9,12 @@ namespace WebPersonal_API.Modelos;
 [Table("c_provin")]
 public partial class CProvin
 {
+    public CProvin()
+    {
+        //CBarrios = new HashSet<CBarrio>();
+        CMunicis = new HashSet<CMunici>();
+    }
+
     [Key]
     [Column("cod_provin")]
     [StringLength(2)]
@@ -25,5 +31,6 @@ public partial class CProvin
     public virtual ICollection<CBarrio> CBarrios { get; set; } = new List<CBarrio>();
 
     [InverseProperty("CodProvinNavigation")]
-    public virtual ICollection<CMunici> CMunicis { get; set; } = new List<CMunici>();
+    //= new List<CMunici>()
+    public virtual ICollection<CMunici> CMunicis { get; set; }
 }

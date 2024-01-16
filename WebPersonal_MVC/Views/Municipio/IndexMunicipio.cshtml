@@ -1,8 +1,45 @@
-﻿
+﻿@model IEnumerable<WebPersonal_MVC.Models.Dto.CMuniciDto>
 @{
-    ViewData["Title"] = "IndexMunicipio";
+    ViewData["Title"] = "Municipios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>IndexMunicipio</h1>
+<div class="container p-4 boder">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">@ViewData["Title"]</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-controller="Municipio" asp-action="CreateMunicipio" class="btn btn-outline-primary"><i class="bi bi-plus-square-fill"></i> Crear Nuevo</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código Provincia</th>
+                @* <th>Provincia</th> *@
+                <th>Código Muicipio</th>
+                <th>Municipio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CodProvin</td>
+                    @* <td>@item.CodProvinNavigation.NomProvin</td> *@
+                    <td>@item.CodMunici</td>
+                    <td>@item.NomMunici</td>
+                    <td>
+                        <a asp-controller="Municipio" asp-action="ActualizarMunicipio" asp-route-codProvin="@item.CodProvin" asp-route-codMunici="@item.CodMunici" class="btn btn-success"><i class="bi bi-pencil-square"></i> </a>
+                        <a asp-controller="Municipio" asp-action="RemoverMunicipio" asp-route-codProvin="@item.CodProvin" asp-route-codMunici="@item.CodMunici" class="btn btn-danger"><i class="bi bi-trash-fill"></i> </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
 

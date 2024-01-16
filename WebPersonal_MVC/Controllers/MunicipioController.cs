@@ -28,8 +28,11 @@ namespace WebPersonal_MVC.Controllers
             {
                 lista = JsonConvert.DeserializeObject<List<CMuniciDto>>(Convert.ToString(response.Resultado));
             }
-
             return View(lista);
         }
+
+
+
+
     }
 }

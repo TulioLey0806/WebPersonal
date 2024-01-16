@@ -9,6 +9,7 @@ namespace WebPersonal_MVC.Models.Dto
         [Display(Name = "Código Provincia")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Unicode(false)]
+        [ForeignKey("CodProvin")]
         public string CodProvin { get; set; }
 
         [Display(Name = "Código Municipio")]
@@ -24,8 +25,8 @@ namespace WebPersonal_MVC.Models.Dto
         //[InverseProperty("CMunici")]
         //public virtual ICollection<CBarrio> CBarrios { get; set; } = new List<CBarrio>();
 
-        //[ForeignKey("CodProvin")]
-        //[InverseProperty("CMunicis")]
-        //public virtual CProvin CodProvinNavigation { get; set; }
+        [InverseProperty("CMunicis")]
+        public CProvinDto CodProvinNavigation { get; set; }
+
     }
 }

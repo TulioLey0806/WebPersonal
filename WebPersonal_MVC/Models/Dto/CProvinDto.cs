@@ -19,7 +19,8 @@ namespace WebPersonal_MVC.Models.Dto
         //[InverseProperty("CodProvinNavigation")]
         //public virtual ICollection<CBarrio> CBarrios { get; set; } = new List<CBarrio>();
 
-        //[InverseProperty("CodProvinNavigation")]
-        //public virtual ICollection<CMunici> CMunicis { get; set; } = new List<CMunici>();
+        [InverseProperty("CodProvinNavigation")]
+        //= new List<CMuniciDto>();
+        public virtual ICollection<CMuniciDto> CMunicis { get; set; } 
     }
 }

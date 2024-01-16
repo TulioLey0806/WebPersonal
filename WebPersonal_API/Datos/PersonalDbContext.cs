@@ -76,7 +76,9 @@ public partial class PersonalDbContext : DbContext
                 .IsFixedLength();
             entity.Property(e => e.NomMunici).HasDefaultValue("");
 
-            entity.HasOne(d => d.CodProvinNavigation).WithMany(p => p.CMunicis)
+            entity.HasOne(d => d.CodProvinNavigation)
+                .WithMany(p => p.CMunicis)
+                .HasForeignKey(d => d.CodProvin)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_c_munici_cod_provin");
         });

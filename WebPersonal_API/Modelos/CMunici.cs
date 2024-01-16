@@ -14,6 +14,7 @@ public partial class CMunici
     [Column("cod_provin")]
     [StringLength(2)]
     [Unicode(false)]
+    [ForeignKey("CodProvin")]
     public string CodProvin { get; set; }
 
     [Key]
@@ -31,7 +32,6 @@ public partial class CMunici
     [InverseProperty("CMunici")]
     public virtual ICollection<CBarrio> CBarrios { get; set; } = new List<CBarrio>();
 
-    [ForeignKey("CodProvin")]
     [InverseProperty("CMunicis")]
     public virtual CProvin CodProvinNavigation { get; set; }
 }
