@@ -16,7 +16,7 @@ namespace WebPersonal_API.Repositorio.IRepositorio
         /// </summary>
         /// <param name="filtro"></param>
         /// <returns></returns>
-        Task<List<T>> ObtenerTodos(Expression<Func<T, bool>> filtro = null);
+        Task<List<T>> ObtenerTodos(Expression<Func<T, bool>> filtro = null, string? incluirPropiedades=null);
 
         /// <summary>
         /// Devuelve un solo registro de la entidad
@@ -24,7 +24,7 @@ namespace WebPersonal_API.Repositorio.IRepositorio
         /// <param name="filtro"></param>
         /// <param name="tracked"></param>
         /// <returns></returns>
-        Task<T> Obtener(Expression<Func<T, bool>> filtro = null, bool tracked = true);
+        Task<T> Obtener(Expression<Func<T, bool>> filtro = null, bool tracked = true, string? incluirPropiedades = null);
 
         /// <summary>
         /// Elimina un registro de la entidad

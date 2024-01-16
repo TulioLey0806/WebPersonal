@@ -44,7 +44,7 @@ namespace WebPersonal_API.Controllers
         {
             try
             {
-                IEnumerable<CMunici> tablaList = await _municipioRepo.ObtenerTodos();
+                IEnumerable<CMunici> tablaList = await _municipioRepo.ObtenerTodos(incluirPropiedades:"CodProvinNavigation");
 
                 // Implementando API Respose
                 _logger.LogInformation("GetMunicipios: Obteniendo todos los Municipios");
@@ -80,7 +80,7 @@ namespace WebPersonal_API.Controllers
                     return BadRequest(_response);
                 }
 
-                var registro = await _municipioRepo.Obtener(v => v.CodProvin == codProvin && v.CodMunici == codMunici);
+                var registro = await _municipioRepo.Obtener(v => v.CodProvin == codProvin && v.CodMunici == codMunici, incluirPropiedades: "CodProvinNavigation");
                 if (registro == null)
                 {
                     _logger.LogError(MenNotFound);
