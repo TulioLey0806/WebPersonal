@@ -13,6 +13,46 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\Humberto Ley Ruiz.jpg",
+      "PackagePath": "staticwebassets\\img\\Humberto Ley Ruiz.jpg"
+    },
+    {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\Lognb.JPG",
+      "PackagePath": "staticwebassets\\img\\Lognb.JPG"
+    },
+    {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\Register.jpg",
+      "PackagePath": "staticwebassets\\img\\Register.jpg"
+    },
+    {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\anonymous-user-icon.png",
+      "PackagePath": "staticwebassets\\img\\anonymous-user-icon.png"
+    },
+    {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\imageinicio1.jpg",
+      "PackagePath": "staticwebassets\\img\\imageinicio1.jpg"
+    },
+    {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\imageinicio2.jpg",
+      "PackagePath": "staticwebassets\\img\\imageinicio2.jpg"
+    },
+    {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\imageinicio3.webp",
+      "PackagePath": "staticwebassets\\img\\imageinicio3.webp"
+    },
+    {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\imageinicio4.webp",
+      "PackagePath": "staticwebassets\\img\\imageinicio4.webp"
+    },
+    {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\imageinicio5.webp",
+      "PackagePath": "staticwebassets\\img\\imageinicio5.webp"
+    },
+    {
+      "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\img\\imageinicio6.webp",
+      "PackagePath": "staticwebassets\\img\\imageinicio6.webp"
+    },
+    {
       "Id": "E:\\WebApp\\WebPersonal\\WebPersonal_MVC\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
