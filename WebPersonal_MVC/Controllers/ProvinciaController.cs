@@ -52,7 +52,6 @@ namespace WebPersonal_MVC.Controllers
             return View(modelo);             
         }
 
-
         public async Task<IActionResult> ActualizarProvincia(string codProvin)
         {
             var response = await _provinciaService.Obtener<APIResponse>(codProvin);

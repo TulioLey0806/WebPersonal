@@ -116,12 +116,12 @@ namespace WebPersonal_API.Controllers
                 // Implementando Validaciones Personalizadas
                 if (await _provinciaRepo.Obtener(v => v.NomProvin!.ToLower() == createDto.NomProvin!.ToLower()) != null)
                 {
-                    //ModelState.AddModelError("NombreExiste", "La categoría con ese Nombre ya existe!");
+                    ModelState.AddModelError("ErrorMessages", "La categoría con ese Nombre ya existe!");
                     _logger.LogError("CrearProvincia: " + MenBadRequest);
-                    _response.IsExitoso = false;
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.ErrorMessages = new List<string>() { MenBadRequest };
-                    return BadRequest(_response);
+                    //_response.IsExitoso = false;
+                    //_response.StatusCode = HttpStatusCode.BadRequest;
+                    //_response.ErrorMessages = new List<string>() { MenBadRequest };
+                    return BadRequest(ModelState);
                 }
 
                 if (createDto == null)

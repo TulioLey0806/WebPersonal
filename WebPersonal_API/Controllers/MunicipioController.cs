@@ -121,7 +121,7 @@ namespace WebPersonal_API.Controllers
                 // Implementando Validaciones Personalizadas
                 if (await _municipioRepo.Obtener(v => v.CodProvin == createDto.CodProvin && v.CodMunici == createDto.CodMunici) != null)
                 {
-                    ModelState.AddModelError("RegistroExiste", "El municipio ya existe!");
+                    ModelState.AddModelError("ErrorMessages", "El municipio ya existe!");
                     _logger.LogError("CrearMunicipio: " + MenBadRequest);
                     //_response.IsExitoso = false;
                     //_response.StatusCode = HttpStatusCode.BadRequest;
@@ -130,7 +130,7 @@ namespace WebPersonal_API.Controllers
                 }
                 if(await _provinciaRepo.Obtener(v => v.CodProvin == createDto.CodProvin) == null)
                 {
-                    ModelState.AddModelError("RegistroNoExiste", "La provincia no existe!");
+                    ModelState.AddModelError("ErrorMessages", "La provincia no existe!");
                     _logger.LogError("CrearMunicipio: " + MenBadRequest);
                     //_response.IsExitoso = false;
                     //_response.StatusCode = HttpStatusCode.BadRequest;

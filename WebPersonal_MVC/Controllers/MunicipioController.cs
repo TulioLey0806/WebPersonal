@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Azure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using WebPersonal_MVC.Models;
@@ -50,6 +52,40 @@ namespace WebPersonal_MVC.Controllers
                                             });
             }
             return View(municipioVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateMunicipio(MunicipioViewModel modelo)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _municipioService.Crear<APIResponse>(modelo.CMunici);
+                if (response !=null && response.IsExitoso)
+                {
+                    return RedirectToAction(nameof(IndexMunicipio));
+                }
+                else
+                {
+                    if (response.ErrorMessages.Count > 0)
+                    {
+                        ModelState.AddModelError("ErrorMessages", response.ErrorMessages.FirstOrDefault());
+                    }
+                }
+            }
+
+            var res = await _provinciaService.ObtenerTodos<APIResponse>();
+            if (res != null && res.IsExitoso)
+            {
+                modelo.ProvinciaList = JsonConvert.DeserializeObject<List<CProvinDto>>(Convert.ToString(res.Resultado))
+                                            .Select(v => new SelectListItem
+                                            {
+                                                Text = v.NomProvin,
+                                                Value = v.CodProvin
+                                            });
+            }
+
+            return View(modelo);
         }
 
 

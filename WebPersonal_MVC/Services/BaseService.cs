@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Net;
 using System.Text;
 using WebPersonal_MVC.Models;
 using WebPersonal_MVC.Services.IServices;
@@ -51,9 +52,29 @@ namespace WebPersonal_MVC.Services
                 HttpResponseMessage apiResponse = null;
                 apiResponse = await client.SendAsync(message);
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
+
+                try
+                {
+                    APIResponse response = JsonConvert.DeserializeObject<APIResponse>(apiContent);
+                    if (apiResponse.StatusCode == HttpStatusCode.BadRequest || apiResponse.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        response.StatusCode = HttpStatusCode.BadRequest;
+                        response.IsExitoso = false;
+                        var res = JsonConvert.SerializeObject(response);
+                        var obj = JsonConvert.DeserializeObject<T>(res);
+                        return obj;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var errorResponse = JsonConvert.DeserializeObject<T>(apiContent);
+                    return errorResponse;
+                }
+
                 var APIResponse = JsonConvert.DeserializeObject<T>(apiContent);
                 return APIResponse;
             }
+
             catch (Exception ex)
             {
                 var dto = new APIResponse
@@ -62,8 +83,8 @@ namespace WebPersonal_MVC.Services
                     IsExitoso = false
                 };
                 var res = JsonConvert.SerializeObject(dto);
-                var APIResponse = JsonConvert.DeserializeObject<T>(res);
-                return APIResponse;
+                var responseEx = JsonConvert.DeserializeObject<T>(res);
+                return responseEx;
             }
         }
     }
