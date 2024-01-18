@@ -50,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVuaWNpcGlvXEluZGV4TXVuaWNpcGlvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/WebApp/WebPersonal/WebPersonal_MVC/Views/Municipio/RemoverMunicipio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVuaWNpcGlvXFJlbW92ZXJNdW5pY2lwaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/WebApp/WebPersonal/WebPersonal_MVC/Views/Provincia/ActualizarProvincia.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmluY2lhXEFjdHVhbGl6YXJQcm92aW5jaWEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

@@ -144,7 +144,29 @@ namespace WebPersonal_MVC.Controllers
             return View(modelo);
         }
 
+        public async Task<IActionResult> RemoverMunicipio(string codProvin, string codMunici)
+        {
+            MunicipioDeleteViewModel municipioVM = new();
 
+            var response = await _municipioService.Obtener<APIResponse>(codProvin, codMunici);
+            if (response != null && response.IsExitoso)
+            {
+                CMuniciDto modelo = JsonConvert.DeserializeObject<CMuniciDto>(Convert.ToString(response.Resultado));
+                municipioVM.CMunici = modelo;
+            }
+            response = await _provinciaService.ObtenerTodos<APIResponse>();
+            if (response != null && response.IsExitoso)
+            {
+                municipioVM.ProvinciaList = JsonConvert.DeserializeObject<List<CProvinDto>>(Convert.ToString(response.Resultado))
+                                            .Select(v => new SelectListItem
+                                            {
+                                                Text = v.NomProvin,
+                                                Value = v.CodProvin
+                                            });
+                return View(municipioVM);
+            }
+            return NotFound();
+        }
 
 
     }
