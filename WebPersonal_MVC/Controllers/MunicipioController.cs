@@ -168,6 +168,19 @@ namespace WebPersonal_MVC.Controllers
             return NotFound();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoverMunicipio(MunicipioDeleteViewModel modelo)
+        {
+            var response = await _municipioService.Remover<APIResponse>(modelo.CMunici.CodProvin, modelo.CMunici.CodMunici);
+            if (response != null && response.IsExitoso)
+            {
+                return RedirectToAction(nameof(IndexMunicipio));
+            }
+            return View(modelo);
+
+        }
+
 
     }
 }
