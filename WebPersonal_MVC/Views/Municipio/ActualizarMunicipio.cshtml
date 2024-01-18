@@ -1,0 +1,50 @@
+﻿@model WebPersonal_MVC.Models.ViewModel.MunicipioUpdateViewModel
+@{
+    ViewData["Title"] = "Actualizar Municipio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="CreateMunicipio">
+    <div class="container border p-3">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="CMunici.CodMunici" hidden />
+        
+        <div class="row">
+            <h2 class="text-info">@ViewData["Title"]</h2>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <label class="form-label">Provincia</label>
+                <select asp-for="CMunici.CodProvin" class="form-select" asp-items="@Model.ProvinciaList">
+                    <option value="">-- Seleccione una Provincia --</option>
+                </select>
+                <span asp-validation-for="CMunici.CodProvin" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <label class="form-label">Código Municipio</label>
+                <input asp-for="CMunici.CodMunici" disabled class="form-control" />
+                <span asp-validation-for="CMunici.NomMunici" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <label class="form-label">Nombre Municipio</label>
+                <input asp-for="CMunici.NomMunici" class="form-control" />
+                <span asp-validation-for="CMunici.NomMunici" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-block mt-2">
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a asp-controller="Municipio" asp-action="IndexMunicipio" class="btn btn-success">Regresar</a>
+        </div>
+
+    </div>
+</form>
+
+

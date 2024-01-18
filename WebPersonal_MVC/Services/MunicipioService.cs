@@ -41,7 +41,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _municipioUrl + "/api/Municipio/" + codProvin +", "+ codMunici
+                Url = _municipioUrl + "/api/Municipio/" + codProvin +","+ codMunici
             });
         }
 
@@ -59,7 +59,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.DELETE,
-                Url = _municipioUrl + "/api/Municipio/" + codProvin + ", " + codMunici
+                Url = _municipioUrl + "/api/Municipio/" + codProvin + "," + codMunici
             });
         }
     }

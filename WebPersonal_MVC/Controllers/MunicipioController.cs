@@ -84,8 +84,31 @@ namespace WebPersonal_MVC.Controllers
                                                 Value = v.CodProvin
                                             });
             }
-
             return View(modelo);
+        }
+
+        public async Task<IActionResult> ActualizarMunicipio(string codProvin, string codMunici)
+        {
+            MunicipioUpdateViewModel municipioVM = new();
+
+            var response = await _municipioService.Obtener<APIResponse>(codProvin, codMunici);
+            if (response != null && response.IsExitoso)
+            {
+                CMuniciDto modelo = JsonConvert.DeserializeObject<CMuniciDto>(Convert.ToString(response.Resultado));
+                municipioVM.CMunici = _mapper.Map<CMuniciUpdateDto>(modelo);
+            }
+            response = await _provinciaService.ObtenerTodos<APIResponse>();
+            if (response != null && response.IsExitoso)
+            {
+                municipioVM.ProvinciaList = JsonConvert.DeserializeObject<List<CProvinDto>>(Convert.ToString(response.Resultado))
+                                            .Select(v => new SelectListItem
+                                            {
+                                                Text = v.NomProvin,
+                                                Value = v.CodProvin
+                                            });
+                return View(municipioVM);
+            }
+            return NotFound();
         }
 
 
