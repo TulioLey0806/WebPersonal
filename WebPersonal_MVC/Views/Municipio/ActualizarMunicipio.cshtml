@@ -4,11 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form method="post" asp-action="CreateMunicipio">
+<form method="post" asp-action="ActualizarMunicipio">
     <div class="container border p-3">
         <div asp-validation-summary="All" class="text-danger"></div>
         <input asp-for="CMunici.CodMunici" hidden />
-        
+        <input asp-for="CMunici.CodProvin" hidden />
+
         <div class="row">
             <h2 class="text-info">@ViewData["Title"]</h2>
         </div>
@@ -16,7 +17,7 @@
         <div class="row mt-2">
             <div class="col-md-6">
                 <label class="form-label">Provincia</label>
-                <select asp-for="CMunici.CodProvin" class="form-select" asp-items="@Model.ProvinciaList">
+                <select asp-for="CMunici.CodProvin" disabled class="form-select" asp-items="@Model.ProvinciaList">
                     <option value="">-- Seleccione una Provincia --</option>
                 </select>
                 <span asp-validation-for="CMunici.CodProvin" class="text-danger"></span>

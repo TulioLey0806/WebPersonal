@@ -22,7 +22,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.PUT,
                 Datos = dto,
-                Url = _municipioUrl + "/api/Municipio/" + dto.CodProvin + ", " + dto.CodMunici
+                Url = _municipioUrl + "/api/Municipio/" + dto.CodProvin + "," + dto.CodMunici
             });
         }
 

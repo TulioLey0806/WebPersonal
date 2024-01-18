@@ -111,6 +111,41 @@ namespace WebPersonal_MVC.Controllers
             return NotFound();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ActualizarMunicipio(MunicipioUpdateViewModel modelo)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _municipioService.Actualizar<APIResponse>(modelo.CMunici);
+                if (response != null && response.IsExitoso)
+                {
+                    return RedirectToAction(nameof(IndexMunicipio));
+                }
+                else
+                {
+                    if (response.ErrorMessages.Count > 0)
+                    {
+                        ModelState.AddModelError("ErrorMessages", response.ErrorMessages.FirstOrDefault());
+                    }
+                }
+            }
+
+            var res = await _provinciaService.ObtenerTodos<APIResponse>();
+            if (res != null && res.IsExitoso)
+            {
+                modelo.ProvinciaList = JsonConvert.DeserializeObject<List<CProvinDto>>(Convert.ToString(res.Resultado))
+                                            .Select(v => new SelectListItem
+                                            {
+                                                Text = v.NomProvin,
+                                                Value = v.CodProvin
+                                            });
+            }
+            return View(modelo);
+        }
+
+
+
 
     }
 }
