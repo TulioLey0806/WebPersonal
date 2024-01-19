@@ -16,6 +16,8 @@ public partial class PersonalDbContext : DbContext
     {
     }
 
+    public virtual DbSet<Usuario> Usuarios { get; set; }
+
     public virtual DbSet<CBarrio> CBarrios { get; set; }
 
     public virtual DbSet<CCatcar> CCatcars { get; set; }
