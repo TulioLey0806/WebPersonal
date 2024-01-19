@@ -63,6 +63,7 @@ namespace WebPersonal_MVC.Controllers
                 var response = await _municipioService.Crear<APIResponse>(modelo.CMunici);
                 if (response !=null && response.IsExitoso)
                 {
+                    TempData["exitoso"] = "Municipio Creado Satifactoriamente";
                     return RedirectToAction(nameof(IndexMunicipio));
                 }
                 else
@@ -120,6 +121,7 @@ namespace WebPersonal_MVC.Controllers
                 var response = await _municipioService.Actualizar<APIResponse>(modelo.CMunici);
                 if (response != null && response.IsExitoso)
                 {
+                    TempData["exitoso"] = "Municipio Actualizado Satifactoriamente";
                     return RedirectToAction(nameof(IndexMunicipio));
                 }
                 else
@@ -175,8 +177,10 @@ namespace WebPersonal_MVC.Controllers
             var response = await _municipioService.Remover<APIResponse>(modelo.CMunici.CodProvin, modelo.CMunici.CodMunici);
             if (response != null && response.IsExitoso)
             {
+                TempData["exitoso"] = "Municipio Eliminado Satifactoriamente";
                 return RedirectToAction(nameof(IndexMunicipio));
             }
+            TempData["error"] = "Ha ocurrido un error al eliminar el Municipio";
             return View(modelo);
 
         }

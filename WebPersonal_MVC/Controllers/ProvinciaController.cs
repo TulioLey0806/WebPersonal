@@ -46,6 +46,7 @@ namespace WebPersonal_MVC.Controllers
                 var reponse = await _provinciaService.Crear<APIResponse>(modelo);
                 if (reponse != null && reponse.IsExitoso) 
                 {
+                    TempData["exitoso"] = "Provincia Creada Satifactoriamente";
                     return RedirectToAction(nameof(IndexProvincia));
                 }
            }
@@ -72,6 +73,7 @@ namespace WebPersonal_MVC.Controllers
                 var response = await _provinciaService.Actualizar<APIResponse>(modelo);
                 if(response != null && response.IsExitoso)
                 {
+                    TempData["exitoso"] = "Provincia Actualizada Satifactoriamente";
                     return RedirectToAction(nameof(IndexProvincia));
                 }
             }
@@ -96,8 +98,10 @@ namespace WebPersonal_MVC.Controllers
             var response = await _provinciaService.Remover<APIResponse>(modelo.CodProvin);
             if (response != null && response.IsExitoso)
             {
-               return RedirectToAction(nameof(IndexProvincia));
+                TempData["exitoso"] = "Provincia Eliminada Satifactoriamente";
+                return RedirectToAction(nameof(IndexProvincia));
             }
+            TempData["error"] = "Ha ocurrido un error al eliminar la Provincia";
             return View(modelo);
         }
 
