@@ -18,7 +18,7 @@ namespace WebPersonal_API.Controllers
     {
         private readonly ILogger<ProvinciaController> _logger;
         private readonly IProvinciaRepositorio _provinciaRepo;
-        // Implemenyado AutoMapper
+        // Implementado AutoMapper
         private readonly IMapper _mapper;
         // Implementado API Response
         protected APIResponse _response;

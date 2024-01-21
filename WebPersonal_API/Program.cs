@@ -30,6 +30,7 @@ builder.Services.AddScoped<ICategoriaCargoRepositorio, CategoriaCargoRepositorio
 builder.Services.AddScoped<IProvinciaRepositorio, ProvinciaRepositorio>();
 // Activando la Interface IMunicipioRepositorio
 builder.Services.AddScoped<IMunicipioRepositorio, MunicipioRepositorio>();
+builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(opt => {
     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
