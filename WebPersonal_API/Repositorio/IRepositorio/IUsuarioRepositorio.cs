@@ -5,10 +5,10 @@ namespace WebPersonal_API.Repositorio.IRepositorio
 {
     public interface IUsuarioRepositorio
     {
-        bool IsUsuarioUnico(string UserName);
+       bool IsUsuarioUnico(string UserName);
 
-        Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
+       Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
 
-        Task<Usuario> Registrar(RegistroRequestDto registroRequestDto);
+       Task<Usuario> Registrar(RegistroRequestDto registroRequestDto);
     }
 }

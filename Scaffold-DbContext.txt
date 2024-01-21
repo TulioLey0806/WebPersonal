@@ -4,5 +4,5 @@
 
 Sintaxis: Scaffold-DbContext {-Connetion-string-in-quotations-} Microsoft.EntityFrameworkCore.SqlServer -Tables {Tables} -outputdir {Modelos} -context {-databasename-}DbContext -contextdir {Data} -DataAnnotations -Force
 
-Scaffold-DbContext 'Server=DESKTOP-RBV1DEH;Database=Personal;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true' Microsoft.EntityFrameworkCore.SqlServer -Tables c_catcar,c_provin,c_munici,c_barrio -OutputDir Modelos -context PersonalDbContext -contextdir Datos -DataAnnotations -Force
+Scaffold-DbContext 'Server=DESKTOP-RBV1DEH;Database=Personal;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true' Microsoft.EntityFrameworkCore.SqlServer -Tables c_catcar,c_provin,c_munici,c_barrio,usuarios -OutputDir Modelos -context PersonalDbContext -contextdir Datos -DataAnnotations -Force
 
