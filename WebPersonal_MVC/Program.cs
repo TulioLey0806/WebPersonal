@@ -12,10 +12,15 @@ builder.Services.AddAutoMapper(typeof(MappingConfig));
 // Adicionando las Interfaces
 builder.Services.AddHttpClient<ICategoriaCargoService, CategoriaCargoService>();
 builder.Services.AddScoped<ICategoriaCargoService, CategoriaCargoService>();
+
 builder.Services.AddHttpClient<IMunicipioService, MunicipioService>();
 builder.Services.AddScoped<IMunicipioService, MunicipioService>();
+
 builder.Services.AddHttpClient<IProvinciaService, ProvinciaService>();
 builder.Services.AddScoped<IProvinciaService, ProvinciaService>();
+
+builder.Services.AddHttpClient<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 var app = builder.Build();
 
