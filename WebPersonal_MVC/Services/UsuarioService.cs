@@ -16,7 +16,7 @@ namespace WebPersonal_MVC.Services
             _usuarioUrl = configuration.GetValue<string>("ServiceUrls:API_URL");
         }
 
-        public Task<T> Login<T>(LoginResponseDto dto)
+        public Task<T> Login<T>(LoginRequestDto dto)
         {
             return SendAsync<T>(new APIRequest()
             {
