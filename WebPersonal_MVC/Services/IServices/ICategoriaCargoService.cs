@@ -4,14 +4,14 @@ namespace WebPersonal_MVC.Services.IServices
 {
     public interface ICategoriaCargoService
     {
-        Task<T> ObtenerTodos<T>();
+        Task<T> ObtenerTodos<T>(string token);
 
-        Task<T> Obtener<T>(string codigo);
+        Task<T> Obtener<T>(string codigo, string token);
 
-        Task<T> Crear<T>(CCatcarCreateDto dto);
+        Task<T> Crear<T>(CCatcarCreateDto dto, string token);
 
-        Task<T> Actualizar<T>(CCatcarCreateDto dto);
+        Task<T> Actualizar<T>(CCatcarCreateDto dto, string token);
 
-        Task<T> Remover<T>(string codigo);
+        Task<T> Remover<T>(string codigo, string token);
     }
 }

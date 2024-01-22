@@ -4,14 +4,14 @@ namespace WebPersonal_MVC.Services.IServices
 {
     public interface IMunicipioService
     {
-        Task<T> ObtenerTodos<T>();
+        Task<T> ObtenerTodos<T>(string token);
 
-        Task<T> Obtener<T>(string codProvin, string codMunici);
+        Task<T> Obtener<T>(string codProvin, string codMunici, string token);
 
-        Task<T> Crear<T>(CMuniciCreateDto dto);
+        Task<T> Crear<T>(CMuniciCreateDto dto, string token);
 
-        Task<T> Actualizar<T>(CMuniciUpdateDto dto);
+        Task<T> Actualizar<T>(CMuniciUpdateDto dto, string token);
 
-        Task<T> Remover<T>(string codProvin, string codMunici);
+        Task<T> Remover<T>(string codProvin, string codMunici, string token);
     }
 }

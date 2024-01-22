@@ -17,50 +17,55 @@ namespace WebPersonal_MVC.Services
             _provinciaUrl = configuration.GetValue<string>("ServiceUrls:API_URL");
         }
 
-        public Task<T> Actualizar<T>(CProvinUpdateDto dto)
+        public Task<T> Actualizar<T>(CProvinUpdateDto dto, string token)
         {
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.PUT,
                 Datos = dto,
-                Url = _provinciaUrl + "/api/Provincia/" + dto.CodProvin
+                Url = _provinciaUrl + "/api/Provincia/" + dto.CodProvin,
+                Token = token
             });
         }
 
-        public Task<T> Crear<T>(CProvinCreateDto dto)
+        public Task<T> Crear<T>(CProvinCreateDto dto, string token)
         {
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = _provinciaUrl + "/api/Provincia/"
+                Url = _provinciaUrl + "/api/Provincia/",
+                Token = token
             });
         }
 
-        public Task<T> Obtener<T>(string codigo)
+        public Task<T> Obtener<T>(string codigo, string token)
         {
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _provinciaUrl + "/api/Provincia/" + codigo
+                Url = _provinciaUrl + "/api/Provincia/" + codigo,
+                Token = token
             });
         }
 
-        public Task<T> ObtenerTodos<T>()
+        public Task<T> ObtenerTodos<T>(string token)
         {
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _provinciaUrl + "/api/Provincia/"
+                Url = _provinciaUrl + "/api/Provincia/",
+                Token = token
             });
         }
 
-        public Task<T> Remover<T>(string codigo)
+        public Task<T> Remover<T>(string codigo, string token)
         {
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.DELETE,
-                Url = _provinciaUrl + "/api/Provincia/" + codigo
+                Url = _provinciaUrl + "/api/Provincia/" + codigo,
+                Token = token
             });
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using WebPersonal_MVC.Models;
 using WebPersonal_MVC.Services.IServices;
@@ -50,6 +51,13 @@ namespace WebPersonal_MVC.Services
                 }
 
                 HttpResponseMessage apiResponse = null;
+
+                // Si el Token es diferente de null, entonces se pasa a la API 
+                if(!string.IsNullOrEmpty(apiRequest.Token))
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiRequest.Token);
+                }
+
                 apiResponse = await client.SendAsync(message);
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
 

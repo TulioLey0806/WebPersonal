@@ -5,6 +5,7 @@ using WebPersonal_MVC.Models;
 using WebPersonal_MVC.Models.Dto;
 using WebPersonal_MVC.Services;
 using WebPersonal_MVC.Services.IServices;
+using WebPersonal_Utilidad;
 
 namespace WebPersonal_MVC.Controllers
 {
@@ -23,7 +24,7 @@ namespace WebPersonal_MVC.Controllers
         {
             List<CCatcarDto> lista = [];
 
-            var response = await _categoriaService.ObtenerTodos<APIResponse>();
+            var response = await _categoriaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
             if (response != null && response.IsExitoso)
             {
                 lista = JsonConvert.DeserializeObject<List<CCatcarDto>>(Convert.ToString(response.Resultado));
