@@ -6,6 +6,6 @@ namespace WebPersonal_MVC.Services.IServices
     {
         Task<T> Login<T>(LoginResponseDto dto);
 
-        Task<T> Registrar<T>(RegistroRequestDto dto)
+        Task<T> Registrar<T>(RegistroRequestDto dto);
     }
 }
