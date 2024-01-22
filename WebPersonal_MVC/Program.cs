@@ -31,6 +31,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddSingleton<IHttpContextAccessor,  HttpContextAccessor>();
 
 var app = builder.Build();
 
@@ -48,6 +49,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+// Habilitando para que todos los proyecto manejen la sesion 
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

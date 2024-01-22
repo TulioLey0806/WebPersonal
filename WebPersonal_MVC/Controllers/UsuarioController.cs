@@ -18,14 +18,14 @@ namespace WebPersonal_MVC.Controllers
             _usuarioService = usuarioService;
         }
 
-        public IActionResult Login()
+        public IActionResult LoginUsuario()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginRequestDto modelo)
+        public async Task<IActionResult> LoginUsuario(LoginRequestDto modelo)
         {
             var response = await _usuarioService.Login<APIResponse>(modelo);
             if (response != null && response.IsExitoso == true)
@@ -42,14 +42,14 @@ namespace WebPersonal_MVC.Controllers
             }
         }
  
-        public IActionResult Registrar()
+        public IActionResult RegistrarUsuario()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Registrar(RegistroRequestDto modelo)
+        public async Task<IActionResult> RegistrarUsuario(RegistroRequestDto modelo)
         {
             var response = await _usuarioService.Registrar<APIResponse>(modelo);
             if(response == null && response.IsExitoso)
@@ -59,7 +59,7 @@ namespace WebPersonal_MVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> LogoutUsuario()
         {
             await HttpContext.SignOutAsync();
             // Limpiando la variable de session 
