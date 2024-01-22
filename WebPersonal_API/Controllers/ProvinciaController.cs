@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.JsonPatch;
@@ -33,6 +34,7 @@ namespace WebPersonal_API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         // Devuelve todos los registros de la tabla
         public async Task<ActionResult<APIResponse>> GetProvincias()
@@ -56,6 +58,7 @@ namespace WebPersonal_API.Controllers
         }
 
         [HttpGet("{codProvin}", Name = "GetProvincia")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -99,6 +102,7 @@ namespace WebPersonal_API.Controllers
         }
         
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -151,6 +155,7 @@ namespace WebPersonal_API.Controllers
         }
 
         [HttpDelete("{codProvin}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -193,6 +198,7 @@ namespace WebPersonal_API.Controllers
         }
 
         [HttpPut("{codProvin}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza todos los registro de la tabla
@@ -218,6 +224,7 @@ namespace WebPersonal_API.Controllers
         }
 
         [HttpPatch("{codProvin}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza solo un campo de la tabla
