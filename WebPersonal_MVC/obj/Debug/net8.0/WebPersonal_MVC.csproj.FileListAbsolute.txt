@@ -276,3 +276,4 @@ E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Comp
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.JSInterop.dll
+E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

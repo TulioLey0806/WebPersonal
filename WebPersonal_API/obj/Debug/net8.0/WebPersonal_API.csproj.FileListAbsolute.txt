@@ -141,3 +141,4 @@ E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\runtimes\win\lib\net6.0\S
 E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\AutoMapper.dll
 E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
