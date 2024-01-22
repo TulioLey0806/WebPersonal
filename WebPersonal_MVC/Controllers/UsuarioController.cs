@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using NuGet.Protocol.Plugins;
+using System.Security.Claims;
 using WebPersonal_MVC.Models;
 using WebPersonal_MVC.Models.Dto;
 using WebPersonal_MVC.Services.IServices;
@@ -31,6 +33,14 @@ namespace WebPersonal_MVC.Controllers
             if (response != null && response.IsExitoso == true)
             {
                 LoginResponseDto loginResponse = JsonConvert.DeserializeObject<LoginResponseDto>(Convert.ToString(response.Resultado)) ;
+
+                // Almacenando los Claims
+                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                identity.AddClaim(new Claim(ClaimTypes.Name, loginResponse.Usuario.UserName));
+                identity.AddClaim(new Claim(ClaimTypes.Role, loginResponse.Usuario.Rol));
+                var principal = new ClaimsPrincipal(identity);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
                 // Almacenando el Token en una variable de session
                 HttpContext.Session.SetString(DS.SessionToken, loginResponse.Token);
                 return RedirectToAction("Index", "Home");

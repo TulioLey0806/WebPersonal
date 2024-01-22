@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Net;
 using WebPersonal_MVC;
 using WebPersonal_MVC.Services;
 using WebPersonal_MVC.Services.IServices;
@@ -33,6 +35,17 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddSingleton<IHttpContextAccessor,  HttpContextAccessor>();
 
+// Implementación para el manejo de Cookie la Autenticación
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                                    .AddCookie(options =>
+                                    {
+                                        options.Cookie.HttpOnly = true;
+                                        options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
+                                        options.LoginPath = "/Usuario/LoginUsuario";
+                                        options.AccessDeniedPath = "/Usuario/AccesoDenegado";
+                                        options.SlidingExpiration = true;
+                                    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -48,6 +61,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 // Habilitando para que todos los proyecto manejen la sesion 
