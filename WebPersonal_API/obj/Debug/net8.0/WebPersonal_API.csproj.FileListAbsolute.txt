@@ -142,3 +142,7 @@ E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\AutoMapper.dll
 E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\WebApp\WebPersonal\WebPersonal_API\obj\Debug\net8.0\WebPersonal_API.MvcApplicationPartsAssemblyInfo.cs
+E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Asp.Versioning.Abstractions.dll
+E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Asp.Versioning.Http.dll
+E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
+E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll

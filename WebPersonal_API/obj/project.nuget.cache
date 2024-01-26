@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "tXOL1d5YA2GaaIfwOFztLCZU7gP52r5vQbUe69+3fsHwjDkAiSevt95U5Rx29F5b++FdoQW8vK+lyMYhL+rRYg==",
+  "dgSpecHash": "V7dzSB/nn1PCdzeL+zNIenfvwOsfs9AIOKSnsaXgFhkRxY6PM0RmV0IySaM6N1SlphvIziNwHd2TOpNnGtKb/w==",
   "success": true,
   "projectFilePath": "E:\\WebApp\\WebPersonal\\WebPersonal_API\\WebPersonal_API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Humberto\\.nuget\\packages\\asp.versioning.abstractions\\8.0.0\\asp.versioning.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Humberto\\.nuget\\packages\\asp.versioning.http\\8.0.0\\asp.versioning.http.8.0.0.nupkg.sha512",
+    "C:\\Users\\Humberto\\.nuget\\packages\\asp.versioning.mvc\\8.0.0\\asp.versioning.mvc.8.0.0.nupkg.sha512",
+    "C:\\Users\\Humberto\\.nuget\\packages\\asp.versioning.mvc.apiexplorer\\8.0.0\\asp.versioning.mvc.apiexplorer.8.0.0.nupkg.sha512",
     "C:\\Users\\Humberto\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Humberto\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Humberto\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
