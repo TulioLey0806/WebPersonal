@@ -6,11 +6,11 @@ using WebPersonal_API.Modelos;
 using WebPersonal_API.Modelos.Dto;
 using WebPersonal_API.Repositorio.IRepositorio;
 
-namespace WebPersonal_API.Controllers.v1
+namespace WebPersonal_API.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersionNeutral]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioRepositorio _usuarioRepo;
