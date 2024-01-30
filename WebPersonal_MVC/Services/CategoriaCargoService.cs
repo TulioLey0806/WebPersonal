@@ -23,7 +23,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.PUT,
                 Datos = dto,
-                Url = _apiUrl + "/api/CategoriaCargo/" + dto.CodCatcar,
+                Url = _apiUrl + "/api/v1/CategoriaCargo/" + dto.CodCatcar,
                 Token = token
             });
         }
@@ -34,7 +34,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = _apiUrl + "/api/CategoriaCargo/",
+                Url = _apiUrl + "/api/v1/CategoriaCargo/",
                 Token = token
             });
         }
@@ -44,7 +44,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _apiUrl + "/api/CategoriaCargo/" + codigo,
+                Url = _apiUrl + "/api/v1/CategoriaCargo/" + codigo,
                 Token = token
             });
         }
@@ -54,7 +54,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _apiUrl + "/api/CategoriaCargo/",
+                Url = _apiUrl + "/api/v1/CategoriaCargo/",
                 Token = token
             });
         }
@@ -64,7 +64,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.DELETE,
-                Url = _apiUrl + "/api/CategoriaCargo/" + codigo,
+                Url = _apiUrl + "/api/v1/CategoriaCargo/" + codigo,
                 Token = token
             }); 
         }

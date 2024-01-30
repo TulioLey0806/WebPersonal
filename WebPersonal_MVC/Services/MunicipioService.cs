@@ -22,7 +22,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.PUT,
                 Datos = dto,
-                Url = _municipioUrl + "/api/Municipio/" + dto.CodProvin + "," + dto.CodMunici,
+                Url = _municipioUrl + "/api/v1/Municipio/" + dto.CodProvin + "," + dto.CodMunici,
                 Token = token
             });
         }
@@ -33,7 +33,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = _municipioUrl + "/api/Municipio/",
+                Url = _municipioUrl + "/api/v1/Municipio/",
                 Token = token
             });
         }
@@ -43,7 +43,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _municipioUrl + "/api/Municipio/" + codProvin +","+ codMunici,
+                Url = _municipioUrl + "/api/v1/Municipio/" + codProvin +","+ codMunici,
                 Token = token
             });
         }
@@ -53,7 +53,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.GET,
-                Url = _municipioUrl + "/api/Municipio/",
+                Url = _municipioUrl + "/api/v1/Municipio/",
                 Token = token
             });
         }
@@ -63,7 +63,7 @@ namespace WebPersonal_MVC.Services
             return SendAsync<T>(new APIRequest()
             {
                 APITipo = DS.APITipo.DELETE,
-                Url = _municipioUrl + "/api/Municipio/" + codProvin + "," + codMunici,
+                Url = _municipioUrl + "/api/v1/Municipio/" + codProvin + "," + codMunici,
                 Token = token
             });
         }

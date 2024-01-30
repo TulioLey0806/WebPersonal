@@ -22,7 +22,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = _usuarioUrl + "/api/Usuario/Login"
+                Url = _usuarioUrl + "/api/v1/Usuario/Login"
             });
         }
 
@@ -32,7 +32,7 @@ namespace WebPersonal_MVC.Services
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = _usuarioUrl + "/api/Usuario/Registrar"
+                Url = _usuarioUrl + "/api/v1/Usuario/Registrar"
             });
         }
     }

@@ -10,7 +10,7 @@ namespace WebPersonal_API.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    [ApiVersionNeutral]
+    [Asp.Versioning.ApiVersionNeutral]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioRepositorio _usuarioRepo;
