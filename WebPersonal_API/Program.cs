@@ -82,10 +82,8 @@ builder.Services.AddDbContext<PersonalDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnetion"));
     option.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
-
 // Implementando AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingConfig));
-
 // Activando la Interface ICategoriaCargoRepositorio
 builder.Services.AddScoped<ICategoriaCargoRepositorio, CategoriaCargoRepositorio>();
 // Activando la Interface IProvinciaRepositorio
@@ -98,6 +96,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(opt => {
     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
 
+// Activando Web API Versiones
 builder.Services.AddApiVersioning(options =>
     {
         options.AssumeDefaultVersionWhenUnspecified = true;

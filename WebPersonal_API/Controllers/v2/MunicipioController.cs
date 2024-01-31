@@ -14,6 +14,7 @@ using WebPersonal_API.Repositorio.IRepositorio;
 
 namespace WebPersonal_API.Controllers.v2
 {
+    //[Route("api/[controller]")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [ApiVersion("2.0")]
@@ -28,7 +29,7 @@ namespace WebPersonal_API.Controllers.v2
         protected APIResponse _response;
 
         // Implementando - Logger Inyeccion de Dependencia
-        public MunicipioController(ILogger<MunicipioController> logger, 
+        public MunicipioController(ILogger<MunicipioController> logger,
                                    IProvinciaRepositorio provinciaRepo,
                                    IMunicipioRepositorio municipioRepo,
                                    IMapper mapper)
@@ -48,7 +49,7 @@ namespace WebPersonal_API.Controllers.v2
         {
             try
             {
-                IEnumerable<CMunici> tablaList = await _municipioRepo.ObtenerTodos(incluirPropiedades:"CodProvinNavigation");
+                IEnumerable<CMunici> tablaList = await _municipioRepo.ObtenerTodos(incluirPropiedades: "CodProvinNavigation");
 
                 // Implementando API Respose
                 _logger.LogInformation("GetMunicipios: Obteniendo todos los Municipios");
@@ -75,7 +76,7 @@ namespace WebPersonal_API.Controllers.v2
             try
             {
                 var MenBadRequest = "En blanco o null el código de municipio";
-                var MenNotFound = "No existe el municipio con Id " + codProvin + "-"+ codMunici;
+                var MenNotFound = "No existe el municipio con Id " + codProvin + "-" + codMunici;
                 if (string.IsNullOrEmpty(codProvin) || string.IsNullOrEmpty(codMunici))
                 {
                     _logger.LogError(MenBadRequest);
@@ -107,6 +108,5 @@ namespace WebPersonal_API.Controllers.v2
             }
             return _response;
         }
-
     }
 }

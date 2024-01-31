@@ -8,6 +8,7 @@ using WebPersonal_API.Repositorio.IRepositorio;
 
 namespace WebPersonal_API.Controllers
 {
+    //[Route("api/[controller]")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [Asp.Versioning.ApiVersionNeutral]
