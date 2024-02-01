@@ -10,6 +10,7 @@ using System.Net;
 using WebPersonal_API.Datos;
 using WebPersonal_API.Modelos;
 using WebPersonal_API.Modelos.Dto;
+using WebPersonal_API.Modelos.Especificaciones;
 using WebPersonal_API.Repositorio.IRepositorio;
 
 namespace WebPersonal_API.Controllers.v1
@@ -60,6 +61,32 @@ namespace WebPersonal_API.Controllers.v1
             }
             return _response;
         }
+
+        [HttpGet("ProvinciasPaginado")]
+        [ResponseCache(CacheProfileName = "Default30")]  // Se define en mi Program.cs
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        // Devuelve todos los registros de la tabla
+        public ActionResult<APIResponse> GetProvinciasPaginado([FromQuery] Parametros parametros)
+        {
+            try
+            {
+                var tablaList = _provinciaRepo.ObtenerTodosPaginado(parametros);
+                // Implementando API Respose
+                _logger.LogInformation("GetProvinciasPaginado: Obteniendo todas las Provincias Paginadas");
+                _response.Resultado = _mapper.Map<IEnumerable<CProvinDto>>(tablaList);
+                _response.StatusCode = HttpStatusCode.OK;
+                _response.TotalPaginas = tablaList.MetaData.TotalPages;
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsExitoso = false;
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
+            }
+            return _response;
+        }
+
 
         [HttpGet("{codProvin}", Name = "GetProvincia")]
         [Authorize]

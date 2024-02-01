@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using WebPersonal_API.Datos;
+using WebPersonal_API.Modelos.Especificaciones;
 using WebPersonal_API.Repositorio.IRepositorio;
 
 namespace WebPersonal_API.Repositorio
@@ -64,6 +65,23 @@ namespace WebPersonal_API.Repositorio
                 }
             }
             return await query.ToListAsync();
+        }
+
+        public PagedList<T> ObtenerTodosPaginado(Parametros parametros, Expression<Func<T, bool>> filtro = null, string incluirPropiedades = null)
+        {
+            IQueryable<T> query = dbSet;
+            if (filtro != null)
+            {
+                query = query.Where(filtro);
+            }
+            if (incluirPropiedades != null)
+            {
+                foreach (var incluirPro in incluirPropiedades.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(incluirPro);
+                }
+            }
+            return PagedList<T>.ToPagedList(query, parametros.PageNumber, parametros.PageSize);
         }
 
         public async Task Remover(T entidad)

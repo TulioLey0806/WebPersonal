@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using WebPersonal_API.Modelos.Especificaciones;
 
 namespace WebPersonal_API.Repositorio.IRepositorio
 {
@@ -17,6 +18,14 @@ namespace WebPersonal_API.Repositorio.IRepositorio
         /// <param name="filtro"></param>
         /// <returns></returns>
         Task<List<T>> ObtenerTodos(Expression<Func<T, bool>> filtro = null, string? incluirPropiedades=null);
+
+        /// <summary>
+        /// Devuelve todos los registros de la entidad Paginados
+        /// </summary>
+        /// <param name="parametros"></param>
+        /// <param name="filtro"></param>
+        /// <returns></returns>
+        PagedList<T> ObtenerTodosPaginado(Parametros parametros,Expression<Func<T, bool>> filtro = null, string? incluirPropiedades = null);
 
         /// <summary>
         /// Devuelve un solo registro de la entidad
