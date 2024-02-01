@@ -1,4 +1,6 @@
-﻿@model IEnumerable<WebPersonal_MVC.Models.Dto.CProvinDto>
+﻿@* @model IEnumerable<WebPersonal_MVC.Models.Dto.CProvinDto> *@
+@model WebPersonal_MVC.Models.ViewModel.ProvinciaPaginadoViewModel
+
 @{
     ViewData["Title"] = "Provincias";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var item in Model)
+            @foreach (var item in Model.ProvinciaList)
             {
                 <tr>
                     <td>@item.CodProvin</td>
@@ -37,3 +39,20 @@
     </table>
 </div>
 
+<a asp-action="IndexProvincia"
+   asp-route-pageNumber="@(1)" class="btn btn-outline-primary  000000">
+    <i class="bi bi-skip-start-fill"></i>
+</a>
+<a asp-action="IndexProvincia"
+   asp-route-pageNumber="@(Model.PageNumber - 1)" class="btn btn-outline-primary @Model.Previo">
+    Anterior
+</a>
+<span>Pagina @Model.PageNumber de @Model.TotalPaginas </span>
+<a asp-action="IndexProvincia"
+   asp-route-pageNumber="@(Model.PageNumber + 1)" class="btn btn-outline-primary @Model.Siguiente">
+    Siguiente
+</a>
+<a asp-action="IndexProvincia"
+   asp-route-pageNumber="@Model.TotalPaginas" class="btn btn-outline-primary">
+    <i class="bi bi-skip-end-fill"></i>
+</a>

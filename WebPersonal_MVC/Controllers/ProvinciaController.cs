@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WebPersonal_MVC.Models;
 using WebPersonal_MVC.Models.Dto;
+using WebPersonal_MVC.Models.ViewModel;
 using WebPersonal_MVC.Services.IServices;
 using WebPersonal_Utilidad;
 
@@ -19,17 +20,30 @@ namespace WebPersonal_MVC.Controllers
             _provinciaService = provinciaService;
         }
         
-        public async Task<IActionResult> IndexProvincia()
+        public async Task<IActionResult> IndexProvincia(int pageNumber = 1)
         {
-            List<CProvinDto> lista = [];
+            List<CProvinDto> lista = new();
+            ProvinciaPaginadoViewModel provinciaVM = new();
 
-            var response = await _provinciaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
+            // Garantizo que sea 1 en caso que sea negativo
+            if (pageNumber < 1) pageNumber = 1;
+
+            var response = await _provinciaService.ObtenerTodosPaginado<APIResponse>(HttpContext.Session.GetString(DS.SessionToken), pageNumber, 5);
             if(response != null && response.IsExitoso)
             {
                 lista = JsonConvert.DeserializeObject<List<CProvinDto>>(Convert.ToString(response.Resultado));
+                provinciaVM = new ProvinciaPaginadoViewModel()
+                {
+                    ProvinciaList = lista,
+                    PageNumber = pageNumber,
+                    TotalPaginas = JsonConvert.DeserializeObject<int>(Convert.ToString(response.TotalPaginas))
+                };
+
+                if (pageNumber > 1) provinciaVM.Previo = "";
+                if (provinciaVM.TotalPaginas <= pageNumber) provinciaVM.Siguiente = "disabled";
             }
 
-            return View(lista);
+            return View(provinciaVM);
         }
 
         // Get
