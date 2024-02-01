@@ -36,6 +36,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpGet]
+        [ResponseCache(CacheProfileName = "Default30")]  // Se define en mi Program.cs
         [ProducesResponseType(StatusCodes.Status200OK)]
         // Devuelve todos los registros de la tabla
         public async Task<ActionResult<APIResponse>> GetCategoriaCargos()
