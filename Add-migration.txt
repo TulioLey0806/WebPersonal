@@ -3,4 +3,5 @@ update-database -Context PersonalDbContext
 
 *-- Implementando EntityFramework
 add-migration AgregarTablasIdentity -Context PersonalDbContext
+add-migration AgregarCampoNombresTablasIdentity -Context PersonalDbContext
 update-database -Context PersonalDbContext

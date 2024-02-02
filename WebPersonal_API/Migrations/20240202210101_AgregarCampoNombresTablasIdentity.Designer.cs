@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebPersonal_API.Datos;
 
@@ -11,9 +12,11 @@ using WebPersonal_API.Datos;
 namespace WebPersonal_API.Migrations
 {
     [DbContext(typeof(PersonalDbContext))]
-    partial class PersonalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240202210101_AgregarCampoNombresTablasIdentity")]
+    partial class AgregarCampoNombresTablasIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

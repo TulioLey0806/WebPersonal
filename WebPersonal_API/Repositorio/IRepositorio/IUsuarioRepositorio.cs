@@ -9,6 +9,6 @@ namespace WebPersonal_API.Repositorio.IRepositorio
 
        Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
 
-       Task<Usuario> Registrar(RegistroRequestDto registroRequestDto);
+       Task<UsuarioDto> Registrar(RegistroRequestDto registroRequestDto);
     }
 }

@@ -9,5 +9,7 @@
         public string Password { get; set; }
 
         public string Rol { get; set; }
+
+        public string Cod_ident { get; set; }
     }
 }

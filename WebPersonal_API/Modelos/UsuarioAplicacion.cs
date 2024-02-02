@@ -13,5 +13,9 @@ namespace WebPersonal_API.Modelos
         [StringLength(5, ErrorMessage = "El valor {0} no puede superar los {1} caracteres.")]
         [Column(TypeName = "char")]
         public string Cod_reeup { get; set; }
+
+        [StringLength(256, ErrorMessage = "El valor {0} no puede superar los {1} caracteres.")]
+        [Column(TypeName = "nvarchar")]
+        public string Nombres { get; set; }
     }
 }

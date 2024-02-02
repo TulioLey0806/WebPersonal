@@ -52,8 +52,10 @@ namespace WebPersonal_API.Repositorio
                     Usuario = null
                 };
             }
-            // Si el usuario existe Generamos JW Token 
+            
+            // Se almacena el Rol del usuario
             var roles = await _userManager.GetRolesAsync(usuario);
+            // Si el usuario existe Generamos JW Token
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(secretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -76,19 +78,34 @@ namespace WebPersonal_API.Repositorio
             return loginResponseDto;
         }
 
-        public async Task<Usuario> Registrar(RegistroRequestDto registroRequestDto)
+        public async Task<UsuarioDto> Registrar(RegistroRequestDto registroRequestDto)
         {
-            Usuario usuario = new()
+            UsuarioAplicacion usuario = new()
             {
                 UserName = registroRequestDto.UserName,
-                Password = registroRequestDto.Password,
+                Email = registroRequestDto.UserName,
+                NormalizedEmail = registroRequestDto.UserName.ToUpper(),
                 Nombres = registroRequestDto.Nombres,
-                Rol = registroRequestDto.Rol
-            };
-            await _db.Usuarios.AddAsync(usuario);
-            await _db.SaveChangesAsync();
-            usuario.Password = "";
-            return usuario;
+                Cod_ident = registroRequestDto.Cod_ident
+             };
+
+            try
+            {
+                var resultado = await _userManager.CreateAsync(usuario, registroRequestDto.Password);
+                if (resultado.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(usuario, "Invitado");
+                    var usuarioAp = _db.UsuariosAplicacion.FirstOrDefault(u=> u.UserName == registroRequestDto.UserName);
+                    return _mapper.Map<UsuarioDto>(usuarioAp);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
+            return new UsuarioDto();
+
         }
     }
 }

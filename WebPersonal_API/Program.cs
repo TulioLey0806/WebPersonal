@@ -97,7 +97,8 @@ builder.Services.AddDbContext<PersonalDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnetion"));
     option.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
-// Implementando Identity y Roles
+
+// Implementando Identity.EntityFrameworkCore
 builder.Services.AddIdentity<UsuarioAplicacion, IdentityRole>()
                 .AddEntityFrameworkStores<PersonalDbContext>();
 
