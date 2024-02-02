@@ -18,9 +18,13 @@ namespace WebPersonal_API
 
             CreateMap<CMunici, CMuniciDto>().ReverseMap();
             CreateMap<CMunici, CMuniciCreateDto>().ReverseMap();
-            CreateMap<CMunici, CMuniciUpdateDto>().ReverseMap();    
+            CreateMap<CMunici, CMuniciUpdateDto>().ReverseMap();
 
             //CreateMap<CBarrio, CBarrioDto>().ReverseMap();
+            //CreateMap<CBarrio, CBarrioCreateDto>().ReverseMap();
+            //CreateMap<CBarrio, CBarrioUpdateDto>().ReverseMap();
+
+            CreateMap<UsuarioAplicacion, UsuarioDto>().ReverseMap();
 
         }
     }

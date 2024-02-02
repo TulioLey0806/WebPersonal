@@ -1,5 +1,6 @@
 add-migration UsuarioMigracion -Context PersonalDbContext
 update-database -Context PersonalDbContext
 
+*-- Implementando EntityFramework
 add-migration AgregarTablasIdentity -Context PersonalDbContext
 update-database -Context PersonalDbContext

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -14,16 +16,21 @@ namespace WebPersonal_API.Repositorio
     {
         private readonly PersonalDbContext _db;
         private string secretKey;
+        private readonly UserManager<UsuarioAplicacion> _userManager;
+        private readonly IMapper _mapper;
 
-        public UsuarioRepositorio(PersonalDbContext db, IConfiguration configuration)
+        public UsuarioRepositorio(PersonalDbContext db, IConfiguration configuration, UserManager<UsuarioAplicacion> userManager,
+                                  IMapper mapper)
         {
             _db = db;
             secretKey = configuration.GetValue<string>("ApiSettings:Secret");
+            _userManager = userManager;
+            _mapper = mapper;
         }
 
         public bool IsUsuarioUnico(string UserName)
         {
-            var usuario = _db.Usuarios.FirstOrDefault(u => u.UserName.ToLower() == UserName.ToLower());
+            var usuario = _db.UsuariosAplicacion.FirstOrDefault(u => u.UserName.ToLower() == UserName.ToLower());
             if (usuario == null)
             {
                 return true;
@@ -33,9 +40,11 @@ namespace WebPersonal_API.Repositorio
 
         public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
         {
-            var usuario = await _db.Usuarios.FirstOrDefaultAsync(u => u.UserName.ToLower() == loginRequestDto.UserName.ToLower() &&
-                                                                 u.Password == loginRequestDto.Password);
-            if (usuario == null)
+            var usuario = await _db.UsuariosAplicacion.FirstOrDefaultAsync(u => u.UserName.ToLower() == loginRequestDto.UserName.ToLower());
+
+            bool isValido = await _userManager.CheckPasswordAsync(usuario, loginRequestDto.Password);
+
+            if (usuario == null || isValido == false)
             {
                 return new LoginResponseDto()
                 {
@@ -44,6 +53,7 @@ namespace WebPersonal_API.Repositorio
                 };
             }
             // Si el usuario existe Generamos JW Token 
+            var roles = await _userManager.GetRolesAsync(usuario);
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(secretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -51,7 +61,7 @@ namespace WebPersonal_API.Repositorio
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                    new Claim(ClaimTypes.Name, usuario.Id.ToString()),
-                   new Claim(ClaimTypes.Role, usuario.Rol)
+                   new Claim(ClaimTypes.Role, roles.FirstOrDefault())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
@@ -60,7 +70,8 @@ namespace WebPersonal_API.Repositorio
             LoginResponseDto loginResponseDto = new()
             {
                 Token = tokenHandler.WriteToken(token),
-                Usuario = usuario
+                Usuario = _mapper.Map<UsuarioDto>(usuario),
+                Rol = roles.FirstOrDefault()
             };
             return loginResponseDto;
         }
