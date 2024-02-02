@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebPersonal_API.Modelos;
 
 namespace WebPersonal_API.Datos;
 
-public partial class PersonalDbContext : DbContext
+public partial class PersonalDbContext : IdentityDbContext<UsuarioAplicacion>
 {
     public PersonalDbContext()
     {
@@ -15,6 +16,8 @@ public partial class PersonalDbContext : DbContext
         : base(options)
     {
     }
+
+    public virtual DbSet<UsuarioAplicacion> UsuariosAplicacion {  get; set; }
 
     public virtual DbSet<CBarrio> CBarrios { get; set; }
 
@@ -32,6 +35,7 @@ public partial class PersonalDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<CBarrio>(entity =>
         {
             entity.ToTable("c_barrio", tb => tb.HasComment("Barrios"));

@@ -269,15 +269,9 @@ E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\runtimes\win\lib\net7.0\M
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
-E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
-E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
-E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
-E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Web.dll
-E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
-E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.JSInterop.dll
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Asp.Versioning.Abstractions.dll
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Asp.Versioning.Http.dll
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
 E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll
+E:\WebApp\WebPersonal\WebPersonal_MVC\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

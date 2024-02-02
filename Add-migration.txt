@@ -1,2 +1,5 @@
 add-migration UsuarioMigracion -Context PersonalDbContext
 update-database -Context PersonalDbContext
+
+add-migration AgregarTablasIdentity -Context PersonalDbContext
+update-database -Context PersonalDbContext

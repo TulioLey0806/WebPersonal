@@ -146,3 +146,4 @@ E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Asp.Versioning.Abstractio
 E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Asp.Versioning.Http.dll
 E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
 E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll
+E:\WebApp\WebPersonal\WebPersonal_API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

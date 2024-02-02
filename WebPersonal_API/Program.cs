@@ -10,6 +10,8 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using WebPersonal_API.Modelos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -95,6 +97,10 @@ builder.Services.AddDbContext<PersonalDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnetion"));
     option.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
+// Implementando Identity y Roles
+builder.Services.AddIdentity<UsuarioAplicacion, IdentityRole>()
+                .AddEntityFrameworkStores<PersonalDbContext>();
+
 // Implementando AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 // Activando la Interface ICategoriaCargoRepositorio
