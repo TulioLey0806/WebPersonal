@@ -17,15 +17,17 @@ namespace WebPersonal_API.Repositorio
         private readonly PersonalDbContext _db;
         private string secretKey;
         private readonly UserManager<UsuarioAplicacion> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMapper _mapper;
 
         public UsuarioRepositorio(PersonalDbContext db, IConfiguration configuration, UserManager<UsuarioAplicacion> userManager,
-                                  IMapper mapper)
+                                  IMapper mapper, RoleManager<IdentityRole> roleManager)
         {
             _db = db;
             secretKey = configuration.GetValue<string>("ApiSettings:Secret");
             _userManager = userManager;
             _mapper = mapper;
+            _roleManager = roleManager;
         }
 
         public bool IsUsuarioUnico(string UserName)
@@ -83,17 +85,30 @@ namespace WebPersonal_API.Repositorio
             UsuarioAplicacion usuario = new()
             {
                 UserName = registroRequestDto.UserName,
+                NormalizedUserName = registroRequestDto.UserName.ToUpper(),
                 Email = registroRequestDto.UserName,
                 NormalizedEmail = registroRequestDto.UserName.ToUpper(),
                 Nombres = registroRequestDto.Nombres,
-                Cod_ident = registroRequestDto.Cod_ident
-             };
+                Cod_ident = registroRequestDto.Cod_ident,
+                Cod_reeup = registroRequestDto.Cod_reeup
+            };
 
             try
             {
                 var resultado = await _userManager.CreateAsync(usuario, registroRequestDto.Password);
                 if (resultado.Succeeded)
                 {
+                    // En caso que no exista el Rol Admin se crea.
+                    if (!_roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                    }
+                    // En caso que no exista el Rol Admin se crea.
+                    if (!_roleManager.RoleExistsAsync("Invitado").GetAwaiter().GetResult())
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Invitado"));
+                    }
+
                     await _userManager.AddToRoleAsync(usuario, "Invitado");
                     var usuarioAp = _db.UsuariosAplicacion.FirstOrDefault(u=> u.UserName == registroRequestDto.UserName);
                     return _mapper.Map<UsuarioDto>(usuarioAp);

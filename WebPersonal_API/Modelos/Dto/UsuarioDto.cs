@@ -9,5 +9,7 @@
         public string Nombres { get; set; }
         
         public string Cod_Ident { get; set; }
+
+        public string Cod_reeup { get; set; }
     }
 }
