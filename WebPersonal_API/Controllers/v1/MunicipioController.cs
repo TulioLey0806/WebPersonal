@@ -43,7 +43,7 @@ namespace WebPersonal_API.Controllers.v1
 
         [HttpGet]
         [ResponseCache(CacheProfileName = "Default30")]  // Se define en mi Program.cs
-        [Authorize]
+        //[Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         // Devuelve todos los registros de la tabla
         public async Task<ActionResult<APIResponse>> GetMunicipios()
@@ -67,7 +67,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpGet("{codProvin},{codMunici}", Name = "GetMunicipio")]
-        [Authorize]
+        //[Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -111,7 +111,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -173,7 +173,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpDelete("{codProvin},{codMunici}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -216,7 +216,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpPut("{codProvin},{codMunici}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza todos los registro de la tabla
@@ -262,7 +262,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpPatch("{codProvin},{codMunici}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza solo un campo de la tabla

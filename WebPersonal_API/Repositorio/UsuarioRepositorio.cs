@@ -64,7 +64,7 @@ namespace WebPersonal_API.Repositorio
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                   new Claim(ClaimTypes.Name, usuario.Id.ToString()),
+                   new Claim(ClaimTypes.Name, usuario.UserName),
                    new Claim(ClaimTypes.Role, roles.FirstOrDefault())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
@@ -74,8 +74,7 @@ namespace WebPersonal_API.Repositorio
             LoginResponseDto loginResponseDto = new()
             {
                 Token = tokenHandler.WriteToken(token),
-                Usuario = _mapper.Map<UsuarioDto>(usuario),
-                Rol = roles.FirstOrDefault()
+                Usuario = _mapper.Map<UsuarioDto>(usuario)
             };
             return loginResponseDto;
         }
