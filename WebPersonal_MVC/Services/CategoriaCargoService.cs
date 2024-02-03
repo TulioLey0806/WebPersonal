@@ -59,6 +59,17 @@ namespace WebPersonal_MVC.Services
             });
         }
 
+        public Task<T> ObtenerTodosPaginado<T>(string token, int pageNumber = 1, int pageSize = 5)
+        {
+            return SendAsync<T>(new APIRequest()
+            {
+                APITipo = DS.APITipo.GET,
+                Url = _apiUrl + "/api/v1/CategoriaCargo/CategoriaCargosPaginado",
+                Token = token,
+                Parametros = new Parametros() { PageNumber = pageNumber, PageSize = pageSize }
+            });
+        }
+
         public Task<T> Remover<T>(string codigo, string token)
         {
             return SendAsync<T>(new APIRequest()

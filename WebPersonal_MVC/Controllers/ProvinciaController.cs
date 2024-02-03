@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WebPersonal_MVC.Models;
@@ -19,7 +20,8 @@ namespace WebPersonal_MVC.Controllers
             _mapper = mapper;
             _provinciaService = provinciaService;
         }
-        
+
+        [Authorize(Roles = "Invitado,Admin")]
         public async Task<IActionResult> IndexProvincia(int pageNumber = 1)
         {
             List<CProvinDto> lista = new();
@@ -29,7 +31,7 @@ namespace WebPersonal_MVC.Controllers
             if (pageNumber < 1) pageNumber = 1;
 
             var response = await _provinciaService.ObtenerTodosPaginado<APIResponse>(HttpContext.Session.GetString(DS.SessionToken), pageNumber, 5);
-            if(response != null && response.IsExitoso)
+            if (response != null && response.IsExitoso)
             {
                 lista = JsonConvert.DeserializeObject<List<CProvinDto>>(Convert.ToString(response.Resultado));
                 provinciaVM = new ProvinciaPaginadoViewModel()
@@ -47,6 +49,7 @@ namespace WebPersonal_MVC.Controllers
         }
 
         // Get
+        [Authorize(Roles = "Invitado,Admin")]
         public async Task<IActionResult> CreateProvincia() 
         {
             return View();
@@ -68,6 +71,8 @@ namespace WebPersonal_MVC.Controllers
             return View(modelo);             
         }
 
+        // Get
+        [Authorize(Roles = "Invitado,Admin")]
         public async Task<IActionResult> ActualizarProvincia(string codProvin)
         {
             var response = await _provinciaService.Obtener<APIResponse>(codProvin, HttpContext.Session.GetString(DS.SessionToken));
@@ -95,6 +100,8 @@ namespace WebPersonal_MVC.Controllers
             return View(modelo);
         }
 
+        // Get
+        [Authorize(Roles = "Invitado,Admin")]
         public async Task<IActionResult> RemoverProvincia(string codProvin)
         {
             var response = await _provinciaService.Obtener<APIResponse>(codProvin, HttpContext.Session.GetString(DS.SessionToken));

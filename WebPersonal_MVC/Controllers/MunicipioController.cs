@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,19 +27,34 @@ namespace WebPersonal_MVC.Controllers
             _mapper = mapper;
         }
 
-        public async Task<IActionResult> IndexMunicipio()
+        [Authorize(Roles = "Invitado,Admin")]
+        public async Task<IActionResult> IndexMunicipio(int pageNumber = 1)
         {
             List<CMuniciDto> lista = [];
+            MunicipioPaginadoViewModel municipioVM = new();
 
-            var response = await _municipioService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
+            // Garantizo que sea 1 en caso que sea negativo
+            if (pageNumber < 1) pageNumber = 1;
+
+            var response = await _municipioService.ObtenerTodosPaginado<APIResponse>(HttpContext.Session.GetString(DS.SessionToken), pageNumber, 5);
             if (response != null && response.IsExitoso)
             {
                 lista = JsonConvert.DeserializeObject<List<CMuniciDto>>(Convert.ToString(response.Resultado));
+                municipioVM = new MunicipioPaginadoViewModel()
+                {
+                    MunicipioList = lista,
+                    PageNumber = pageNumber,
+                    TotalPaginas = JsonConvert.DeserializeObject<int>(Convert.ToString(response.TotalPaginas))
+                };
+
+                if (pageNumber > 1) municipioVM.Previo = "";
+                if (municipioVM.TotalPaginas <= pageNumber) municipioVM.Siguiente = "disabled";
             }
-            return View(lista);
+            return View(municipioVM);
         }
 
         //Get
+        [Authorize(Roles = "Invitado,Admin")]
         public async Task<IActionResult> CreateMunicipio()
         {
             MunicipioViewModel municipioVM = new();
@@ -89,6 +105,7 @@ namespace WebPersonal_MVC.Controllers
             return View(modelo);
         }
 
+        [Authorize(Roles = "Invitado,Admin")]
         public async Task<IActionResult> ActualizarMunicipio(string codProvin, string codMunici)
         {
             MunicipioUpdateViewModel municipioVM = new();
@@ -147,6 +164,7 @@ namespace WebPersonal_MVC.Controllers
             return View(modelo);
         }
 
+        [Authorize(Roles = "Invitado,Admin")]
         public async Task<IActionResult> RemoverMunicipio(string codProvin, string codMunici)
         {
             MunicipioDeleteViewModel municipioVM = new();
@@ -185,7 +203,5 @@ namespace WebPersonal_MVC.Controllers
             return View(modelo);
 
         }
-
-
     }
 }

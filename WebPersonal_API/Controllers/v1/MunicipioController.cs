@@ -10,6 +10,7 @@ using System.Net;
 using WebPersonal_API.Datos;
 using WebPersonal_API.Modelos;
 using WebPersonal_API.Modelos.Dto;
+using WebPersonal_API.Modelos.Especificaciones;
 using WebPersonal_API.Repositorio.IRepositorio;
 
 namespace WebPersonal_API.Controllers.v1
@@ -43,7 +44,7 @@ namespace WebPersonal_API.Controllers.v1
 
         [HttpGet]
         [ResponseCache(CacheProfileName = "Default30")]  // Se define en mi Program.cs
-        //[Authorize]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         // Devuelve todos los registros de la tabla
         public async Task<ActionResult<APIResponse>> GetMunicipios()
@@ -66,8 +67,33 @@ namespace WebPersonal_API.Controllers.v1
             return _response;
         }
 
+        [HttpGet("MunicipiosPaginado")]
+        [ResponseCache(CacheProfileName = "Default30")]  // Se define en mi Program.cs
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        // Devuelve todos los registros de la tabla paginados
+        public ActionResult<APIResponse> GetMunicipiosPaginado([FromQuery] Parametros parametros)
+        {
+            try
+            {
+                 var tablaList = _municipioRepo.ObtenerTodosPaginado(parametros, incluirPropiedades: "CodProvinNavigation");
+                // Implementando API Respose
+                _logger.LogInformation("GetMunicipiosPaginado: Obteniendo todos los Municipios Paginados");
+                _response.Resultado = _mapper.Map<IEnumerable<CMuniciDto>>(tablaList);
+                _response.StatusCode = HttpStatusCode.OK;
+                _response.TotalPaginas = tablaList.MetaData.TotalPages;
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsExitoso = false;
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
+            }
+            return _response;
+        }
+
         [HttpGet("{codProvin},{codMunici}", Name = "GetMunicipio")]
-        //[Authorize]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -111,7 +137,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -173,7 +199,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpDelete("{codProvin},{codMunici}")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -216,7 +242,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpPut("{codProvin},{codMunici}")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza todos los registro de la tabla
@@ -262,7 +288,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpPatch("{codProvin},{codMunici}")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza solo un campo de la tabla

@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.JsonPatch;
@@ -9,6 +10,7 @@ using System.Net;
 using WebPersonal_API.Datos;
 using WebPersonal_API.Modelos;
 using WebPersonal_API.Modelos.Dto;
+using WebPersonal_API.Modelos.Especificaciones;
 using WebPersonal_API.Repositorio.IRepositorio;
 
 namespace WebPersonal_API.Controllers.v1
@@ -38,6 +40,7 @@ namespace WebPersonal_API.Controllers.v1
         [HttpGet]
         [ResponseCache(CacheProfileName = "Default30")]  // Se define en mi Program.cs
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         // Devuelve todos los registros de la tabla
         public async Task<ActionResult<APIResponse>> GetCategoriaCargos()
         {
@@ -60,10 +63,36 @@ namespace WebPersonal_API.Controllers.v1
             return _response;
         }
 
+        [HttpGet("CategoriaCargosPaginado")]
+        [ResponseCache(CacheProfileName = "Default30")]  // Se define en mi Program.cs
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
+        // Devuelve todos los registros de la tabla
+        public ActionResult<APIResponse> GetCategoriaCargosPaginado([FromQuery] Parametros parametros)
+        {
+            try
+            {
+                var tablaList = _categoriacargoRepo.ObtenerTodosPaginado(parametros);
+                // Implementando API Respose
+                _logger.LogInformation("GetCategoriaCargosPaginado: Obteniendo todas las Categorias de Cargos Paginados");
+                _response.Resultado = _mapper.Map<IEnumerable<CCatcarDto>>(tablaList);
+                _response.StatusCode = HttpStatusCode.OK;
+                _response.TotalPaginas = tablaList.MetaData.TotalPages;
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsExitoso = false;
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
+            }
+            return _response;
+        }
+
         [HttpGet("{codigo}", Name = "GetCategoriaCargo")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         // Devuelve el registro de la tabla que se pase como parametro 
         public async Task<ActionResult<APIResponse>> GetCategoriaCargo(string codigo)
         {
@@ -107,6 +136,7 @@ namespace WebPersonal_API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         // Crea un nuevo registro en la tabla
         public async Task<ActionResult<APIResponse>> CrearCategoriaCargo([FromBody] CCatcarCreateDto createDto)
         {
@@ -159,6 +189,8 @@ namespace WebPersonal_API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
+        // Elimina en registro de la tabla
         public async Task<IActionResult> DeleteCategoriaCargo(string codigo)
         {
             try
@@ -200,6 +232,7 @@ namespace WebPersonal_API.Controllers.v1
         [HttpPut("{codigo}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         // Actualiza todos los registro de la tabla
         public async Task<IActionResult> UpdateCategoriaCargo(string codigo, [FromBody] CCatcarUpdateDto updateDto)
         {
@@ -225,6 +258,7 @@ namespace WebPersonal_API.Controllers.v1
         [HttpPatch("{codigo}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         // Actualiza solo un campo de la tabla
         public async Task<IActionResult> UpdatePartialCategoriaCargo(string codigo, JsonPatchDocument<CCatcarUpdateDto> updateDto)
         {

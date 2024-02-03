@@ -67,7 +67,7 @@ namespace WebPersonal_API.Repositorio
             return await query.ToListAsync();
         }
 
-        public PagedList<T> ObtenerTodosPaginado(Parametros parametros, Expression<Func<T, bool>> filtro = null, string incluirPropiedades = null)
+        public PagedList<T> ObtenerTodosPaginado(Parametros parametros, Expression<Func<T, bool>> filtro = null, string? incluirPropiedades = null)
         {
             IQueryable<T> query = dbSet;
             if (filtro != null)

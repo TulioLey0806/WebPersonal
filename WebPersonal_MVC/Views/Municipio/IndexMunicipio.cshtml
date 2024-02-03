@@ -1,4 +1,6 @@
-﻿@model IEnumerable<WebPersonal_MVC.Models.Dto.CMuniciDto>
+﻿@* @model IEnumerable<WebPersonal_MVC.Models.Dto.CMuniciDto> *@
+@model WebPersonal_MVC.Models.ViewModel.MunicipioPaginadoViewModel
+
 @{
     ViewData["Title"] = "Municipios";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.MunicipioList)
             {
                 <tr>
                     <td>@item.CodProvin</td>
@@ -41,5 +43,22 @@
     </table>
 </div>
 
+<a asp-action="IndexMunicipio"
+   asp-route-pageNumber="@(1)" class="btn btn-outline-primary  000000">
+    <i class="bi bi-skip-start-fill"></i>
+</a>
+<a asp-action="IndexMunicipio"
+   asp-route-pageNumber="@(Model.PageNumber - 1)" class="btn btn-outline-primary @Model.Previo">
+    Anterior
+</a>
+<span>Pagina @Model.PageNumber de @Model.TotalPaginas </span>
+<a asp-action="IndexMunicipio"
+   asp-route-pageNumber="@(Model.PageNumber + 1)" class="btn btn-outline-primary @Model.Siguiente">
+    Siguiente
+</a>
+<a asp-action="IndexMunicipio"
+   asp-route-pageNumber="@Model.TotalPaginas" class="btn btn-outline-primary">
+    <i class="bi bi-skip-end-fill"></i>
+</a>
 
 

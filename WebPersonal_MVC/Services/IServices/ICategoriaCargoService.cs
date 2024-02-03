@@ -6,6 +6,8 @@ namespace WebPersonal_MVC.Services.IServices
     {
         Task<T> ObtenerTodos<T>(string token);
 
+        Task<T> ObtenerTodosPaginado<T>(string token, int pageNumber = 1, int pageSize = 5);
+
         Task<T> Obtener<T>(string codigo, string token);
 
         Task<T> Crear<T>(CCatcarCreateDto dto, string token);

@@ -39,7 +39,7 @@ namespace WebPersonal_API.Controllers.v1
 
         [HttpGet]
         [ResponseCache(CacheProfileName = "Default30")]  // Se define en mi Program.cs
-        //[Authorize(Roles = "Invitado,Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes ="Bearer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         // Devuelve todos los registros de la tabla
         public async Task<ActionResult<APIResponse>> GetProvincias()
@@ -64,9 +64,9 @@ namespace WebPersonal_API.Controllers.v1
 
         [HttpGet("ProvinciasPaginado")]
         [ResponseCache(CacheProfileName = "Default30")]  // Se define en mi Program.cs
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        // Devuelve todos los registros de la tabla
+        // Devuelve todos los registros de la tabla paginados
         public ActionResult<APIResponse> GetProvinciasPaginado([FromQuery] Parametros parametros)
         {
             try
@@ -88,7 +88,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpGet("{codProvin}", Name = "GetProvincia")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -132,7 +132,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -185,7 +185,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpDelete("{codProvin}")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -228,7 +228,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpPut("{codProvin}")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza todos los registro de la tabla
@@ -254,7 +254,7 @@ namespace WebPersonal_API.Controllers.v1
         }
 
         [HttpPatch("{codProvin}")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Invitado,Admin", AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // Actualiza solo un campo de la tabla
